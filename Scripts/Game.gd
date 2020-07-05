@@ -7,4 +7,5 @@ onready var resource_b_label = $UI/ResourceB
 func _ready():
 	r.resource_a_label = resource_a_label
 	r.resource_b_label = resource_b_label
-
+	r.add_resource_a(0)
+	r.add_resource_b(100)
