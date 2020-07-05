@@ -16,7 +16,19 @@ _global_script_class_icons={
 [application]
 
 config/name="Space Bounty"
+run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+g="*res://Scripts/global.gd"
+c="*res://Scripts/constants.gd"
+
+[display]
+
+window/size/width=640
+window/size/height=960
+window/handheld/orientation="portrait"
 
 [rendering]
 
