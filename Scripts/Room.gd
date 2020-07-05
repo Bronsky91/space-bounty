@@ -25,6 +25,7 @@ func build(specs: Dictionary) -> void:
 	generation_rate = specs.rate
 	$Label.text = type
 	start_production()
+	print(get_parent().add_room(specs.type))
 
 func _on_Timer_timeout() -> void:
 	r.add_resource_a(generation_rate)
