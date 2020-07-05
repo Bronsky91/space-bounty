@@ -37,12 +37,27 @@ __meta__ = {
 }
 
 [node name="RoomBuildWindowDialog" type="WindowDialog" parent="."]
+visible = true
 margin_left = 179.0
 margin_top = 416.0
 margin_right = 456.0
 margin_bottom = 629.0
 window_title = "Build Room"
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuildRoom" type="Button" parent="RoomBuildWindowDialog"]
+anchor_left = 0.318
+anchor_top = 0.773
+anchor_right = 0.685
+anchor_bottom = 0.912
+margin_left = -3.08601
+margin_top = -6.64902
+margin_right = -0.74501
+margin_bottom = -0.256012
+text = "Build Room"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -81,22 +96,8 @@ margin_top = 92.5156
 margin_right = 1.36339
 margin_bottom = 99.5316
 text = "Cost: "
-
-[node name="BuildRoom" type="Button" parent="RoomBuildWindowDialog"]
-anchor_left = 0.318
-anchor_top = 0.773
-anchor_right = 0.685
-anchor_bottom = 0.912
-margin_left = -3.08601
-margin_top = -6.64902
-margin_right = -0.74501
-margin_bottom = -0.256012
-text = "Build!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="button_up" from="Build" to="." method="_on_Build_button_up"]
 [connection signal="about_to_show" from="RoomBuildWindowDialog" to="RoomBuildWindowDialog" method="_on_RoomBuildWindowDialog_about_to_show"]
-[connection signal="item_selected" from="RoomBuildWindowDialog/OptionButton" to="RoomBuildWindowDialog" method="_on_OptionButton_item_selected"]
 [connection signal="button_up" from="RoomBuildWindowDialog/BuildRoom" to="RoomBuildWindowDialog" method="_on_BuildRoom_button_up"]
+[connection signal="item_selected" from="RoomBuildWindowDialog/OptionButton" to="RoomBuildWindowDialog" method="_on_OptionButton_item_selected"]

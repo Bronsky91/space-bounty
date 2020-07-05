@@ -1,6 +1,13 @@
 extends WindowDialog
 
-const build_options: Array = [c.MISSION, c.COMPUTER, c.CREW]
+const build_options: Array = [
+	c.MISSION,
+	c.COMPUTER,
+	c.CREW,
+	c.ARMORY,
+	c.GREEN_HOUSE,
+]
+
 var build_type_index: int
 
 func _ready():

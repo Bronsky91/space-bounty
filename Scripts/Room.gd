@@ -10,14 +10,14 @@ var generation_rate: int
 func _ready():
 	pass
 
-func start_production() -> void:
-	is_productive = true
-	produce()
-
 func produce() -> void:
 	$Timer.start()
 	$Build.hide()
 	$RoomSprite.texture = ROOM
+
+func start_production() -> void:
+	is_productive = true
+	produce()
 
 func build(specs: Dictionary) -> void:
 	r.subtract_resource_b(specs.cost)
@@ -25,10 +25,12 @@ func build(specs: Dictionary) -> void:
 	generation_rate = specs.rate
 	$Label.text = type
 	start_production()
-	print(get_parent().add_room(specs.type))
+	get_parent().add_room(specs.type) # Tells ship the room is added
 
 func _on_Timer_timeout() -> void:
-	r.add_resource_a(generation_rate)
+	# If the type of room is a production room then generate resource A on a timer
+	if c.PRODUCTION_ROOMS.has(type):
+		r.add_resource_a(generation_rate)
 
 func _on_Build_button_up() -> void:
 	$RoomBuildWindowDialog.popup()
