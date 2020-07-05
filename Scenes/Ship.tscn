@@ -7,4 +7,21 @@
 script = ExtResource( 2 )
 
 [node name="Room" parent="." instance=ExtResource( 1 )]
-position = Vector2( 127.132, 312.582 )
+position = Vector2( 125, 300 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Build Room" type="Button" parent="UI"]
+margin_left = 299.402
+margin_top = 294.562
+margin_right = 344.402
+margin_bottom = 314.562
+text = "Build"
+__meta__ = {
+"_edit_use_anchors_": false
+}

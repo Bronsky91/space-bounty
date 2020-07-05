@@ -12,5 +12,4 @@ func build(specs: Dictionary):
 	
 	
 func _on_Timer_timeout():
-	print('timer start')
-	g.add_resource_a(4)
+	r.add_resource_a(4)

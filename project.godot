@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 g="*res://Scripts/global.gd"
 c="*res://Scripts/constants.gd"
+r="*res://Scripts/resources.gd"
 
 [display]
 
