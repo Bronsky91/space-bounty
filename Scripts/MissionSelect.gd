@@ -2,10 +2,16 @@ extends WindowDialog
 
 const mission_options: Array = [
 	# TODO: Get from API?
+	"The High Ghost"
 ]
 
 const mission_spec: Dictionary = {
-	# TODO: Mission
+	# TODO: Details for each mission
+	"The High Ghost": {
+		"cost": 40
+	}
+	# cost
+	# other attributes
 }
 
 var mission_index: int
