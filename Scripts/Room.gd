@@ -26,6 +26,8 @@ func build(specs: Dictionary) -> void:
 	$Label.text = type
 	start_production()
 	get_parent().add_room(specs.type) # Tells ship the room is added
+	if type == c.MISSION:
+		$BountyStart.show()
 
 func _on_Timer_timeout() -> void:
 	# If the type of room is a production room then generate resource A on a timer
@@ -35,3 +37,6 @@ func _on_Timer_timeout() -> void:
 func _on_Build_button_up() -> void:
 	$RoomBuildWindowDialog.popup()
 	
+func _on_MissionStart_button_up():
+	$BountySelect.popup()
+
