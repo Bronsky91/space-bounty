@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/room-empty.jpg" type="Texture" id=1]
 [ext_resource path="res://Scripts/Room.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/RoomBuildWindowDialog.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/MissionSelect.gd" type="Script" id=4]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )
@@ -37,7 +38,6 @@ __meta__ = {
 }
 
 [node name="RoomBuildWindowDialog" type="WindowDialog" parent="."]
-visible = true
 margin_left = 179.0
 margin_top = 416.0
 margin_right = 456.0
@@ -96,8 +96,71 @@ margin_top = 92.5156
 margin_right = 1.36339
 margin_bottom = 99.5316
 text = "Cost: "
+
+[node name="MissionSelect" type="WindowDialog" parent="."]
+margin_left = 179.0
+margin_top = 416.0
+margin_right = 456.0
+margin_bottom = 629.0
+window_title = "Build Room"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Send" type="Button" parent="MissionSelect"]
+anchor_left = 0.318
+anchor_top = 0.773
+anchor_right = 0.685
+anchor_bottom = 0.912
+margin_left = -3.08601
+margin_top = -6.64902
+margin_right = -0.74501
+margin_bottom = -0.256012
+text = "Build Room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="MissionSelect"]
+anchor_left = 0.307
+anchor_top = 0.273
+anchor_right = 0.69
+anchor_bottom = 0.437
+margin_left = 0.960999
+margin_top = -6.149
+margin_right = -0.13002
+margin_bottom = -0.0810013
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MissionSelect"]
+anchor_left = 0.289
+anchor_top = 0.116
+anchor_right = 0.715
+anchor_bottom = 0.152
+margin_left = 0.0730362
+margin_top = -6.99573
+margin_right = -3.92897
+margin_bottom = 0.0202637
+text = "Select Room Type:"
+
+[node name="CostLabel" type="Label" parent="MissionSelect"]
+anchor_left = 0.289
+anchor_top = 0.116
+anchor_right = 0.715
+anchor_bottom = 0.152
+margin_left = 1.36539
+margin_top = 92.5156
+margin_right = 1.36339
+margin_bottom = 99.5316
+text = "Cost: "
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="button_up" from="Build" to="." method="_on_Build_button_up"]
 [connection signal="about_to_show" from="RoomBuildWindowDialog" to="RoomBuildWindowDialog" method="_on_RoomBuildWindowDialog_about_to_show"]
 [connection signal="button_up" from="RoomBuildWindowDialog/BuildRoom" to="RoomBuildWindowDialog" method="_on_BuildRoom_button_up"]
 [connection signal="item_selected" from="RoomBuildWindowDialog/OptionButton" to="RoomBuildWindowDialog" method="_on_OptionButton_item_selected"]
+[connection signal="about_to_show" from="MissionSelect" to="MissionSelect" method="_on_MissionSelect_about_to_show"]
+[connection signal="button_up" from="MissionSelect/Send" to="MissionSelect" method="_on_Send_button_up"]
+[connection signal="item_selected" from="MissionSelect/OptionButton" to="MissionSelect" method="_on_OptionButton_item_selected"]
