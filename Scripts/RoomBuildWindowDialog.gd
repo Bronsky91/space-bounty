@@ -27,6 +27,7 @@ func _on_OptionButton_item_selected(id) -> void:
 func set_room_cost(index) -> void:
 	build_type_index = index
 	$CostLabel.text = "Cost: %s" % c.ROOM_SPEC[build_options[index]].cost
+	# TODO: Disable send button if the player doesn't have enough resource a
 
 func _on_BuildRoom_button_up() -> void:
 	get_parent().build(c.ROOM_SPEC[build_options[build_type_index]])
