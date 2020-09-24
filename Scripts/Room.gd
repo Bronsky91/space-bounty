@@ -33,6 +33,7 @@ func _on_Timer_timeout() -> void:
 	# If the type of room is a production room then generate resource A on a timer
 	if c.PRODUCTION_ROOMS.has(type):
 		r.add_resource_a(generation_rate)
+		$FloatTextManager.float_text(generation_rate, true)
 
 func _on_Build_button_up() -> void:
 	$RoomBuildWindowDialog.popup()

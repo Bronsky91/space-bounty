@@ -6,6 +6,8 @@ const COMPUTER: String = 'Server Room'
 const CREW: String = 'Crew'
 const GREEN_HOUSE: String = 'Green House'
 const ARMORY: String = 'Armory'
+const SB_GREEN: Color = Color(0,1,0,1)
+const SB_RED: Color = Color(1,0,0,1)
 
 # Set Starting Room Specs
 const ROOM_SPEC: Dictionary = {
