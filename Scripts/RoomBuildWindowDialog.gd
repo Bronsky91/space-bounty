@@ -25,6 +25,7 @@ func _on_RoomBuildWindowDialog_about_to_show():
 	set_room_cost(0)
 
 func create_build_options(button: OptionButton) -> void:
+	button.clear()
 	for option in build_options:
 		button.add_item(option)
 		

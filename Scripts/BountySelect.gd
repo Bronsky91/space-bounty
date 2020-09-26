@@ -30,6 +30,7 @@ func _on_MissionSelect_about_to_show():
 	set_mission_cost(0)
 
 func create_mission_options(button: OptionButton) -> void:
+	button.clear()
 	for option in bounty_options:
 		button.add_item(option)
 
