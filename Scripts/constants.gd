@@ -20,12 +20,12 @@ const ROOM_SPEC: Dictionary = {
 		# 'room_sprite': ####
 	},
 	CREW: {
-		'cost': 10,
+		'cost': 50,
 		'type': CREW,
 		'rate': 5 # Number of crew members it can house
 	},
 	COMPUTER: {
-		'cost': 20,
+		'cost': 50,
 		'type': COMPUTER,
 		'rate': 10, # Number of resource A generated per minute
 	},

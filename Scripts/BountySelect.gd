@@ -16,9 +16,14 @@ const bounty_spec: Dictionary = {
 
 var bounty_index: int
 var bounty_cost: int
+var current_resource_a: int
 
 func _ready():
-	pass
+	r.connect("resource_a_changed", self, "_on_Resource_A_changed")
+	
+func _on_Resource_A_changed(new_resource_value):
+	current_resource_a = new_resource_value
+	toggleSendButton()
 
 func _on_MissionSelect_about_to_show():
 	create_mission_options($OptionButton)
@@ -35,10 +40,12 @@ func set_mission_cost(index) -> void:
 	bounty_index = index
 	bounty_cost = bounty_spec[bounty_options[bounty_index]].cost
 	$CostLabel.text = "Cost: %s" % bounty_cost
-	# TODO: Disable button whenever resource A is less than the bounty cost
-			# Needs to setup signal to enable and disable this button on the above condition
+	toggleSendButton()
 
 func _on_Send_button_up():
 	# TODO: Start bounty progress
 	r.subtract_resource_a(bounty_cost)
 	hide()
+
+func toggleSendButton():
+	$Send.disabled = current_resource_a < bounty_cost
