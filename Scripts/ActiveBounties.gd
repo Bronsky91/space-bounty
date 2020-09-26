@@ -10,10 +10,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
 func add_bounty(bounty: Bounty):
 	var new_bounty_scene = ACTIVE_BOUNTY_SCENE.instance()
-	var test = bounty
+	# TODO: Pass bounty reference instance to scene?
 	add_child(new_bounty_scene)
 	
 func create_progress_bar():

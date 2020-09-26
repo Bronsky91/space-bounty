@@ -19,6 +19,7 @@ onready var active_bounties: VBoxContainer = get_node("/root/Game/UI/ActiveBount
 var bounty_index: int
 var bounty_cost: int
 var current_credits: int
+var selected_bounty: Bounty # TODO: Needed ?
 
 func _ready():
 	r.connect("credits_changed", self, "_on_credits_changed")
@@ -32,6 +33,9 @@ func _on_MissionSelect_about_to_show():
 	set_mission_cost(0)
 
 func create_mission_options(button: OptionButton) -> void:
+	# TODO: Generate Bounties here to select from
+	# var new_bounty = Bounty.new()
+	
 	button.clear()
 	for option in bounty_options:
 		button.add_item(option)
@@ -46,7 +50,7 @@ func set_mission_cost(index) -> void:
 	toggle_send_button()
 
 func _on_Send_button_up():
-	# TODO: Start bounty progress
+	# TODO: set selected_bounty ?
 	r.subtract_credits(bounty_cost)
 	hide()
 	start_bounty()
@@ -54,7 +58,7 @@ func _on_Send_button_up():
 func toggle_send_button():
 	$Send.disabled = current_credits < bounty_cost
 
-
 func start_bounty():
-	var new_bounty = Bounty.new()
-	active_bounties.add_bounty(new_bounty)
+	pass
+	# Pass bounty details here?
+	# active_bounties.add_bounty(new_bounty)
