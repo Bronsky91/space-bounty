@@ -6,41 +6,41 @@ extends Node
 # Resource B creates Rooms #
 # Rooms create resource A #
 
-var resource_a_label: Label
-var resource_b_label: Label
+var credits_label: Label
+var gold_label: Label
 
-var resource_a: int
-var resource_b: int
+var credits: int
+var gold: int
 
-var resource_a_text: String = "Resource A: %s"
-var resource_b_text: String = "Resource B: %s"
+var credits_text: String = "Credits: %s"
+var gold_text: String = "Gold: %s"
 
-signal resource_a_changed
-signal resource_b_changed
+signal credits_changed
+signal gold_changed
 
 func _ready():
 	pass
 
-func add_resource_a(num: int) -> int:
-	resource_a += num
-	resource_a_label.text = resource_a_text % resource_a
-	emit_signal("resource_a_changed", resource_a)
-	return resource_a
+func add_credits(num: int) -> int:
+	credits += num
+	credits_label.text = credits_text % credits
+	emit_signal("credits_changed", credits)
+	return credits
 	
-func subtract_resource_a(num: int) -> int:
-	resource_a -= num
-	resource_a_label.text = resource_a_text % resource_a
-	emit_signal("resource_a_changed", resource_a)
-	return resource_a
+func subtract_credits(num: int) -> int:
+	credits -= num
+	credits_label.text = credits_text % credits
+	emit_signal("credits_changed", credits)
+	return credits
 	
-func add_resource_b(num: int) -> int:
-	resource_b += num
-	resource_b_label.text = resource_b_text % resource_b
-	emit_signal("resource_b_changed", resource_b)
-	return resource_b
+func add_gold(num: int) -> int:
+	gold += num
+	gold_label.text = gold_text % gold
+	emit_signal("gold_changed", gold)
+	return gold
 	
-func subtract_resource_b(num: int) -> int:
-	resource_b -= num
-	resource_b_label.text = resource_b_text % resource_b
-	emit_signal("resource_b_changed", resource_b)
-	return resource_b
+func subtract_gold(num: int) -> int:
+	gold -= num
+	gold_label.text = gold_text % gold
+	emit_signal("gold_changed", gold)
+	return gold

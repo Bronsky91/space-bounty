@@ -16,13 +16,13 @@ const bounty_spec: Dictionary = {
 
 var bounty_index: int
 var bounty_cost: int
-var current_resource_a: int
+var current_credits: int
 
 func _ready():
-	r.connect("resource_a_changed", self, "_on_Resource_A_changed")
+	r.connect("credits_changed", self, "_on_credits_changed")
 	
-func _on_Resource_A_changed(new_resource_value):
-	current_resource_a = new_resource_value
+func _on_credits_changed(new_resource_value):
+	current_credits = new_resource_value
 	toggleSendButton()
 
 func _on_MissionSelect_about_to_show():
@@ -45,8 +45,8 @@ func set_mission_cost(index) -> void:
 
 func _on_Send_button_up():
 	# TODO: Start bounty progress
-	r.subtract_resource_a(bounty_cost)
+	r.subtract_credits(bounty_cost)
 	hide()
 
 func toggleSendButton():
-	$Send.disabled = current_resource_a < bounty_cost
+	$Send.disabled = current_credits < bounty_cost

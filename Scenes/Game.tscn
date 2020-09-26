@@ -15,22 +15,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResourceA" type="Label" parent="UI"]
+[node name="Credits" type="Label" parent="UI"]
 margin_left = 50.0
 margin_top = 15.0
 margin_right = 90.0
 margin_bottom = 29.0
-text = "Resource A:"
+text = "Credits: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResourceB" type="Label" parent="UI"]
+[node name="Gold" type="Label" parent="UI"]
 margin_left = 189.0
 margin_top = 14.0
 margin_right = 229.0
 margin_bottom = 28.0
-text = "Resource B:"
+text = "Gold: "
 __meta__ = {
 "_edit_use_anchors_": false
 }

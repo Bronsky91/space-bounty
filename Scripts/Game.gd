@@ -1,11 +1,11 @@
 extends Node2D
 
-onready var resource_a_label = $UI/ResourceA
-onready var resource_b_label = $UI/ResourceB
+onready var credits_label = $UI/Credits
+onready var gold_label = $UI/Gold
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	r.resource_a_label = resource_a_label
-	r.resource_b_label = resource_b_label
-	r.add_resource_a(0)
-	r.add_resource_b(100)
+	r.credits_label = credits_label
+	r.gold_label = gold_label
+	r.add_credits(100)
+	r.add_gold(0)

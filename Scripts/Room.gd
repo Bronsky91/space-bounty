@@ -20,7 +20,7 @@ func start_production() -> void:
 	produce()
 
 func build(specs: Dictionary) -> void:
-	r.subtract_resource_b(specs.cost)
+	r.subtract_credits(specs.cost)
 	type = specs.type
 	generation_rate = specs.rate
 	$Label.text = type
@@ -32,11 +32,11 @@ func build(specs: Dictionary) -> void:
 func _on_Timer_timeout() -> void:
 	# If the type of room is a production room then generate resource A on a timer
 	if c.PRODUCTION_ROOMS.has(type):
-		r.add_resource_a(generation_rate)
+		r.add_credits(generation_rate)
 		$FloatTextManager.float_text(generation_rate, true)
 
 func _on_Build_button_up() -> void:
-	$RoomBuildWindowDialog.popup()
+	$RoomSelect.popup()
 	
 func _on_MissionStart_button_up():
 	$BountySelect.popup()
