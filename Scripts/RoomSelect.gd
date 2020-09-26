@@ -17,7 +17,7 @@ func _ready():
 	
 func _on_credits_changed(new_credits_value: int):
 	current_credits = new_credits_value
-	toggleBuildRoom()
+	toggle_build_room()
 
 func _on_RoomBuildWindowDialog_about_to_show():
 	create_build_options($OptionButton)
@@ -36,11 +36,11 @@ func set_room_cost(index: int) -> void:
 	var room_cost = c.ROOM_SPEC[build_options[index]].cost
 	$CostLabel.text = "Cost: %s" % room_cost
 	current_selected_room_cost = room_cost
-	toggleBuildRoom()
+	toggle_build_room()
 
 func _on_BuildRoom_button_up() -> void:
 	get_parent().build(c.ROOM_SPEC[build_options[build_type_index]])
 	hide()
 	
-func toggleBuildRoom():
+func toggle_build_room():
 	$BuildRoom.disabled = current_selected_room_cost > current_credits

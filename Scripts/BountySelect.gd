@@ -14,6 +14,8 @@ const bounty_spec: Dictionary = {
 	# other attributes
 }
 
+onready var active_bounties: VBoxContainer = get_node("/root/Game/UI/ActiveBounties")
+
 var bounty_index: int
 var bounty_cost: int
 var current_credits: int
@@ -23,7 +25,7 @@ func _ready():
 	
 func _on_credits_changed(new_resource_value):
 	current_credits = new_resource_value
-	toggleSendButton()
+	toggle_send_button()
 
 func _on_MissionSelect_about_to_show():
 	create_mission_options($OptionButton)
@@ -41,12 +43,18 @@ func set_mission_cost(index) -> void:
 	bounty_index = index
 	bounty_cost = bounty_spec[bounty_options[bounty_index]].cost
 	$CostLabel.text = "Cost: %s" % bounty_cost
-	toggleSendButton()
+	toggle_send_button()
 
 func _on_Send_button_up():
 	# TODO: Start bounty progress
 	r.subtract_credits(bounty_cost)
 	hide()
+	start_bounty()
 
-func toggleSendButton():
+func toggle_send_button():
 	$Send.disabled = current_credits < bounty_cost
+
+
+func start_bounty():
+	var new_bounty = Bounty.new()
+	active_bounties.add_bounty(new_bounty)

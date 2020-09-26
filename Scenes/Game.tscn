@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Fleet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/ActiveBounties.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/ActiveBounty.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -34,3 +36,19 @@ text = "Gold: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ActiveBounties" type="VBoxContainer" parent="UI"]
+anchor_left = 11.6
+anchor_top = 4.075
+anchor_right = 11.6
+anchor_bottom = 4.075
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActiveBounty" parent="UI/ActiveBounties" instance=ExtResource( 4 )]
