@@ -15,21 +15,7 @@ var success_rate: int
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-func _init():
+# Generate new bounty properties based on difficulty level provided
+func _init(level):
 	print('new bounty')
-
-func complete_bounty():
-	pass
-	
-func cancel_bounty():
-	pass
-	
-func gold_rush():
-	# Instantly complete bounty?
-	# Increase bounty progress step?
-	# YEEHAW
-	pass
 	
