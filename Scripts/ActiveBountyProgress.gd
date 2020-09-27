@@ -8,8 +8,5 @@ func on_click():
 	
 # TODO figure out why this isn't firing
 func _on_ActiveBountyProgress_input_event(viewport, event, shape_idx):
-	print("_on_ActiveBountyProgress_input_event triggered")
-	if event is InputEventMouseButton \
-	and event.button_index == BUTTON_LEFT \
-	and event.is_pressed():
+	if event.is_action_released("left_click"):
 		self.on_click()

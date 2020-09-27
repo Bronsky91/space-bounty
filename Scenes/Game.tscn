@@ -43,10 +43,11 @@ anchor_left = 4.802
 anchor_top = 0.071
 anchor_right = 4.802
 anchor_bottom = 0.071
-margin_left = 0.0248108
-margin_top = 0.0433102
-margin_right = 185.025
-margin_bottom = 177.043
+margin_left = -0.149994
+margin_top = -0.1
+margin_right = 178.85
+margin_bottom = 176.9
+mouse_filter = 2
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
