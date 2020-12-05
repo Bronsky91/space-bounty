@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [gd_scene load_steps=22 format=2]
+=======
+[gd_scene load_steps=21 format=2]
+>>>>>>> Stashed changes
 =======
 [gd_scene load_steps=21 format=2]
 >>>>>>> Stashed changes
@@ -19,6 +23,7 @@
 [ext_resource path="res://Assets/Palettes/Hair/Haircolor_000.png" type="Texture" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 shader = ExtResource( 10 )
 shader_param/palette_swap = ExtResource( 12 )
@@ -45,6 +50,8 @@ shader = ExtResource( 10 )
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 10 )
 =======
+=======
+>>>>>>> Stashed changes
 shader = ExtResource( 2 )
 
 [sub_resource type="Animation" id=3]
@@ -854,6 +861,9 @@ tracks/7/keys = {
 "update": 1,
 "values": [ 24, 25, 26, 27, 28, 29, 30, 31 ]
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 [node name="Character" type="Node2D"]
@@ -869,8 +879,12 @@ frame = 45
 
 [node name="Body" type="Sprite" parent="."]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 material = SubResource( 2 )
 texture = ExtResource( 5 )
+=======
+texture = ExtResource( 4 )
+>>>>>>> Stashed changes
 =======
 texture = ExtResource( 4 )
 >>>>>>> Stashed changes
@@ -880,8 +894,12 @@ frame = 45
 
 [node name="Bottom" type="Sprite" parent="."]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 material = SubResource( 3 )
 texture = ExtResource( 3 )
+=======
+texture = ExtResource( 5 )
+>>>>>>> Stashed changes
 =======
 texture = ExtResource( 5 )
 >>>>>>> Stashed changes
@@ -891,8 +909,12 @@ frame = 45
 
 [node name="Top" type="Sprite" parent="."]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 material = SubResource( 4 )
 texture = ExtResource( 2 )
+=======
+texture = ExtResource( 6 )
+>>>>>>> Stashed changes
 =======
 texture = ExtResource( 6 )
 >>>>>>> Stashed changes
@@ -902,8 +924,12 @@ frame = 45
 
 [node name="Head" type="Sprite" parent="."]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 material = SubResource( 5 )
 texture = ExtResource( 4 )
+=======
+texture = ExtResource( 7 )
+>>>>>>> Stashed changes
 =======
 texture = ExtResource( 7 )
 >>>>>>> Stashed changes
@@ -913,8 +939,12 @@ frame = 45
 
 [node name="Eyes" type="Sprite" parent="."]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 material = SubResource( 6 )
 texture = ExtResource( 6 )
+=======
+texture = ExtResource( 8 )
+>>>>>>> Stashed changes
 =======
 texture = ExtResource( 8 )
 >>>>>>> Stashed changes
@@ -931,8 +961,12 @@ frame = 45
 
 [node name="HairA" type="Sprite" parent="."]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 material = SubResource( 8 )
 texture = ExtResource( 8 )
+=======
+texture = ExtResource( 10 )
+>>>>>>> Stashed changes
 =======
 texture = ExtResource( 10 )
 >>>>>>> Stashed changes
