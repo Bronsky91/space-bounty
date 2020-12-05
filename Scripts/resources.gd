@@ -6,8 +6,8 @@ var gold_label: Label
 var credits: int
 var gold: int
 
-var credits_text: String = "Credits: %s"
-var gold_text: String = "Gold: %s"
+var credits_text: String = "%s"
+var gold_text: String = "%s"
 
 signal credits_changed
 signal gold_changed

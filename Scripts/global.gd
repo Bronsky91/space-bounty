@@ -36,3 +36,20 @@ func gold_rush_bounty(id):
 	r.subtract_gold(bounty.gold_needed_to_rush)
 	r.add_credits(bounty.reward_credits)
 	r.add_gold(bounty.reward_gold)
+
+
+func files_in_dir(path: String, keyword: String = "") -> Array:
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif keyword != "" and file.find(keyword) == -1:
+			continue
+		elif not file.begins_with(".") and not file.ends_with(".import"):
+			files.append(file)
+	dir.list_dir_end()
+	return files

@@ -1,27 +1,66 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Human/Female/Top/Human_Female_Top_001.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Human/Female/Bottom/Human_Female_Bottom_001.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Human/Female/Head/Human_Female_Head_001.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Human/Female/Body/Human_Female_Body_001.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Human/Female/Eyes/Human_Female_Eyes_001.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Human/Female/HairB/Human_Female_HairB_000.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Human/Female/HairA/Human_Female_HairA_001.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Human/Female/Eyebrow/Human_Female_Eyebrow_001.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Shaders/PaletteSwap.shader" type="Shader" id=10]
+[ext_resource path="res://Scripts/CharacterGenerator.gd" type="Script" id=11]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 10 )
 
 [node name="Character" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="HairB" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 7 )
+vframes = 6
+hframes = 8
 
-[node name="Body" type="Sprite" parent="Sprites"]
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+vframes = 6
+hframes = 8
 
-[node name="Bottom" type="Sprite" parent="Sprites"]
+[node name="Bottom" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+vframes = 6
+hframes = 8
 
-[node name="Eyebrow" type="Sprite" parent="Sprites"]
+[node name="Top" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 6
+hframes = 8
 
-[node name="Eyes" type="Sprite" parent="Sprites"]
+[node name="Head" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+vframes = 6
+hframes = 8
 
-[node name="HairA" type="Sprite" parent="Sprites"]
+[node name="Eyes" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+vframes = 6
+hframes = 8
 
-[node name="HairB" type="Sprite" parent="Sprites"]
+[node name="Eyebrow" type="Sprite" parent="."]
+texture = ExtResource( 9 )
+vframes = 6
+hframes = 8
 
-[node name="Head" type="Sprite" parent="Sprites"]
-
-[node name="Top" type="Sprite" parent="Sprites"]
+[node name="HairA" type="Sprite" parent="."]
+texture = ExtResource( 8 )
+vframes = 6
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CharacterGenerator" type="Node" parent="."]
+script = ExtResource( 11 )
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
