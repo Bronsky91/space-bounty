@@ -7,13 +7,13 @@
 script = ExtResource( 2 )
 
 [node name="Room" parent="." instance=ExtResource( 1 )]
-position = Vector2( 99.5152, 139.335 )
+position = Vector2( 153.454, 274.183 )
 
 [node name="Room2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 253.532, 139.335 )
+position = Vector2( 468.525, 275.288 )
 
 [node name="Room3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 99.5151, 284.488 )
+position = Vector2( 153.454, 659.065 )
 
 [node name="Room4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 256.856, 285.596 )
+position = Vector2( 469.616, 660.173 )

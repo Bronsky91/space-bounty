@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Skintone_001.png-5c195b5babac745a5aca3ae8b005524b.stex"
+path="res://.import/Skintonecolor_001.png-a7aa344de6404d420f8df72102543548.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Palettes/Skintone/Skintone_001.png"
-dest_files=[ "res://.import/Skintone_001.png-5c195b5babac745a5aca3ae8b005524b.stex" ]
+source_file="res://Assets/Palettes/Skintone/Skintonecolor_001.png"
+dest_files=[ "res://.import/Skintonecolor_001.png-a7aa344de6404d420f8df72102543548.stex" ]
 
 [params]
 

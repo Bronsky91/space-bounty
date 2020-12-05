@@ -2,6 +2,7 @@ extends Node2D
 
 const EMPTY_ROOM = preload("res://Assets/room-empty.jpg")
 const ROOM = preload("res://Assets/room-test.jpg")
+const CHARACTER_SCENE = preload("res://Scenes/Character.tscn")
 
 var is_productive: bool = false
 var type: String
@@ -41,3 +42,6 @@ func _on_Build_button_up() -> void:
 func _on_MissionStart_button_up():
 	$BountySelect.popup()
 
+func _on_AddCharacter_button_up():
+	var new_character = CHARACTER_SCENE.instance()
+	add_child(new_character)

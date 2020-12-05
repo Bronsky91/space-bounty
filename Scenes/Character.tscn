@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Human/Female/Top/Human_Female_Top_001.png" type="Texture" id=2]
@@ -11,9 +11,12 @@
 [ext_resource path="res://Assets/Human/Female/Eyebrow/Human_Female_Eyebrow_001.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Shaders/PaletteSwap.shader" type="Shader" id=10]
 [ext_resource path="res://Scripts/CharacterGenerator.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Palettes/Hair/Haircolor_012.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 10 )
+shader_param/palette_swap = ExtResource( 12 )
+shader_param/greyscale_palette = ExtResource( 12 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 10 )
