@@ -1,11 +1,5 @@
 extends Node
 
-### Note on Resources ###
-# Resource A creates Missions # 
-# Missions create resource B #
-# Resource B creates Rooms #
-# Rooms create resource A #
-
 var credits_label: Label
 var gold_label: Label
 

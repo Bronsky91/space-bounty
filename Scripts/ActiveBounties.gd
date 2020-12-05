@@ -1,8 +1,6 @@
 extends VBoxContainer
 
-
-
-var ACTIVE_BOUNTY_SCENE = preload("res://Scenes/ActiveBountyProgress.tscn")
+const ACTIVE_BOUNTY_SCENE = preload("res://Scenes/ActiveBountyProgress.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

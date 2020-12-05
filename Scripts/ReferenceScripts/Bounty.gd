@@ -1,11 +1,17 @@
 class_name Bounty
 extends Reference
 
+const uuid_util = preload('res://Scripts/uuid.gd')
 
 var id: String
+var name: String
+var cost: int
 var reward_credits: int
 var reward_gold: int
-var success_rate: int
+var success_rate: float
+var progress_percent: int
+var started: bool
+var hunter
 # Progress %
 # [Hunter]
 # Reward
@@ -17,5 +23,16 @@ func _ready():
 
 # Generate new bounty properties based on difficulty level provided
 func _init(level):
-	print('new bounty')
+	id = uuid_util.v4()
+	build_bounty(level)
 	
+func build_bounty(level):
+	# This is just a test to set data using the reference script
+	
+	name = "The High Ghost"
+	cost = 40
+	reward_credits = 50
+	reward_gold = 2
+	success_rate = .90
+	started = false
+	progress_percent = 0 
