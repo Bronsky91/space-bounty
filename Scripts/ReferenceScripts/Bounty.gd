@@ -10,7 +10,7 @@ var reward_credits: int
 var reward_gold: int
 var success_rate: float
 var progress_percent: int
-var hunter
+var gold_needed_to_rush: int
 # Progress %
 # [Hunter]
 # Reward
@@ -34,3 +34,4 @@ func build_bounty(level):
 	reward_gold = 2
 	success_rate = .90
 	progress_percent = 0 
+	gold_needed_to_rush = 30

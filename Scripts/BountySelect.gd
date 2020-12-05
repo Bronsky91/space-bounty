@@ -42,7 +42,7 @@ func toggle_send_button():
 	$Send.disabled = len(bounties) == 0 or r.credits < selected_bounty.cost
 
 func start_bounty():
-	active_bounties.add_bounty(selected_bounty)
 	g.apply_in_progress_bounty(selected_bounty)
+	active_bounties.add_bounty(selected_bounty)
 	bounties.erase(selected_bounty)
 	$CostLabel.text = ""

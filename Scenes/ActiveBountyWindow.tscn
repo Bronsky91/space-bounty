@@ -16,6 +16,7 @@ margin_left = 237.262
 margin_top = 858.638
 margin_right = 413.262
 margin_bottom = 933.638
+disabled = true
 text = "Rush"
 __meta__ = {
 "_edit_use_anchors_": false

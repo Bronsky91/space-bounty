@@ -8,4 +8,4 @@ func _ready():
 	r.credits_label = credits_label
 	r.gold_label = gold_label
 	r.add_credits(100)
-	r.add_gold(0)
+	r.add_gold(100)
