@@ -1,0 +1,51 @@
+{
+    "Body": {
+        "front": 2,
+		"right": 6,
+		"back": 5,
+		"left": 6
+    },
+    "Bottom": {
+        "front": 3,
+		"right": 7,
+		"back": 6,
+		"left": 7
+    },
+	"EyeBrow": {
+        "front": 7,
+		"right": 3,
+		"back": 1,
+		"left": 3
+    },
+    "Eyes": {
+        "front": 6,
+		"right": 2,
+		"back": 2,
+		"left": 2
+    },
+    "HairA": {
+        "front": 8,
+		"right": 4,
+		"back": 4,
+		"left": 4
+    },
+    "HairB": {
+        "front": 1,
+		"right": 5,
+		"back": 8,
+		"left": 5
+    },
+    "Head": {
+        "front": 5,
+		"right": 1,
+		"back": 3,
+		"left": 1
+    },
+    "Top": {
+        "front": 4,
+		"right": 8,
+		"back": 7,
+		"left": 8
+    },
+
+}

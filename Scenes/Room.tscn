@@ -113,7 +113,6 @@ margin_bottom = 99.5316
 text = "Cost: "
 
 [node name="BountySelect" type="WindowDialog" parent="."]
-visible = true
 margin_left = 179.0
 margin_top = 416.0
 margin_right = 456.0
