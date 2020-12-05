@@ -43,5 +43,6 @@ func toggle_send_button():
 
 func start_bounty():
 	active_bounties.add_bounty(selected_bounty)
+	g.apply_in_progress_bounty(selected_bounty)
 	bounties.erase(selected_bounty)
 	$CostLabel.text = ""

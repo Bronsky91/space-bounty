@@ -32,13 +32,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Done" type="Button" parent="."]
+[node name="Collect" type="Button" parent="."]
 margin_left = 446.832
 margin_top = 859.973
 margin_right = 622.832
 margin_bottom = 934.973
 rect_pivot_offset = Vector2( 110.051, 37.5 )
-text = "Okay"
+disabled = true
+text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,6 +58,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="button_up" from="Rush" to="." method="_on_Build_button_up"]
+[connection signal="button_up" from="Rush" to="." method="_on_Rush_button_up"]
 [connection signal="button_up" from="Cancel" to="." method="_on_Cancel_button_up"]
-[connection signal="button_up" from="Done" to="." method="_on_Done_button_up"]
+[connection signal="button_up" from="Collect" to="." method="_on_Collect_button_up"]
