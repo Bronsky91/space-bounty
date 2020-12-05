@@ -32,7 +32,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Okay" type="Button" parent="."]
+[node name="Done" type="Button" parent="."]
 margin_left = 446.832
 margin_top = 859.973
 margin_right = 622.832
@@ -59,4 +59,4 @@ __meta__ = {
 }
 [connection signal="button_up" from="Rush" to="." method="_on_Build_button_up"]
 [connection signal="button_up" from="Cancel" to="." method="_on_Cancel_button_up"]
-[connection signal="button_up" from="Okay" to="." method="_on_Okay_button_up"]
+[connection signal="button_up" from="Done" to="." method="_on_Done_button_up"]

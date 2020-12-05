@@ -26,8 +26,11 @@ func _on_OptionButton_item_selected(index) -> void:
 	set_mission_cost(index)
 
 func set_mission_cost(index) -> void:
-	selected_bounty = bounties[index]
-	$CostLabel.text = "Cost: %s" % selected_bounty.cost
+	if len(bounties) > 0:
+		selected_bounty = bounties[index]
+		$CostLabel.text = "Cost: %s" % selected_bounty.cost
+	else:
+		$CostLabel.text = "No Bounties Available"
 	toggle_send_button()
 
 func _on_Send_button_up():
@@ -36,8 +39,9 @@ func _on_Send_button_up():
 	start_bounty()
 
 func toggle_send_button():
-	$Send.disabled = r.credits < selected_bounty.cost
+	$Send.disabled = len(bounties) == 0 or r.credits < selected_bounty.cost
 
 func start_bounty():
 	active_bounties.add_bounty(selected_bounty)
-	
+	bounties.erase(selected_bounty)
+	$CostLabel.text = ""
