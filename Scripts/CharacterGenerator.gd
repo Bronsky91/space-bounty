@@ -1,14 +1,18 @@
 extends Node
 
+onready var character = get_parent()
+
+onready var animation_player = character.get_node("AnimationPlayer")
+
 onready var player_sprite: Dictionary = {
-	'Body': $Body,
-	'Bottom': $Bottom,
-	'Eyes': $Eyes,
-	'HairA': $HairA,
-	'HairB': $HairB,
-	'Head': $Head,
-	'Top': $TopB,
-	'Eyebrow': $Eyebrow
+	'Body': character.get_node("Body"),
+	'Bottom': character.get_node("Bottom"),
+	'Eyes': character.get_node("Eyes"),
+	'HairA': character.get_node("HairA"),
+	'HairB': character.get_node("HairB"),
+	'Head': character.get_node("Head"),
+	'Top': character.get_node("Top"),
+	'Eyebrow': character.get_node("Eyebrow")
 }
 
 onready var palette_sprite_dict: Dictionary = {
@@ -41,7 +45,7 @@ var current_animation = 0
 
 func _ready():
 	create_random_character()
-	$PlayerSprites/AnimationPlayer.play("idle_front")
+	animation_player.play("idle_front")
 	
 func _process(delta):
 	pass
@@ -58,7 +62,6 @@ func set_sprite_color(folder, sprite: Sprite, number: String) -> void:
 	var gray_palette_path = "res://Assets/Palettes/{folder}/{folder}color_000.png".format({
 		"folder": folder
 	})
-	
 	sprite.material.set_shader_param("palette_swap", load(palette_path))
 	sprite.material.set_shader_param("greyscale_palette", load(gray_palette_path))
 	pallete_sprite_state[folder] = number
@@ -94,50 +97,7 @@ func create_random_character() -> void:
 		var random_color = random_asset(palette_folder_path+"/"+folder)
 		if random_color == "" or "000" in random_color:
 			random_color = random_color.replace("000", "001")
+		print(folder)
+		print(palette_sprite_dict)
 		for sprite in palette_sprite_dict[folder]:
 			set_sprite_color(folder, sprite, random_color.substr(len(random_color)-7, 3))
-
-func _on_GenderButton_button_up(_gender):
-	gender = _gender
-	create_random_character()
-
-func _on_Random_button_up():
-	create_random_character()
-
-func _on_Turn_button_up(direction):
-	var animations = ['idle_front', 'idle_right', 'idle_back', 'idle_left']
-	current_animation += direction
-	if current_animation == 4 or current_animation == -4:
-		current_animation = 0
-	$PlayerSprites/AnimationPlayer.play(animations[current_animation])
-	
-func _on_Sprite_Selection_button_up(direction: int, sprite: String):
-	# TODO: Figure out how to select new a body
-	if not sprite == "Body":
-		var folder_path = "res://Assets/Character/"+race+"/"+gender+"/"+sprite+"/"
-		var files = g.files_in_dir(folder_path, "Idle")
-		var file = sprite_state[sprite].split("/")[-1]
-		var current_index = files.find(file)
-		var new_index = current_index + direction
-		if new_index > len(files) - 1:
-			new_index = 0
-		if new_index == -1:
-			new_index = len(files) -1
-		var new_sprite_path = folder_path + files[new_index]
-		set_sprite_texture(sprite, new_sprite_path)
-
-func _on_Color_Selection_button_up(direction: int, palette_sprite: String):
-	var folder_path = "res://Assets/Palettes/"+palette_sprite
-	var files = g.files_in_dir(folder_path)
-	var new_color = int(pallete_sprite_state[palette_sprite]) + direction
-	if new_color == 0 and direction == -1:
-		new_color = len(files) - 1
-	if new_color == len(files) and direction == 1:
-		new_color = 1
-	for sprite in palette_sprite_dict[palette_sprite]:
-		set_sprite_color(palette_sprite, sprite, str(new_color).pad_zeros(3))
-
-
-func _on_Save_button_up():
-	pass
-	# Saves Character state in new slot
