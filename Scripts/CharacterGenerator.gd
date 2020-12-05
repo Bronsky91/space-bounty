@@ -45,9 +45,15 @@ var current_animation = 0
 
 func _ready():
 	create_random_character()
-	
+	make_character_shaders_unique()
+
 func _process(delta):
 	pass
+	
+func make_character_shaders_unique():
+	for sprite in player_sprite:
+		var mat = player_sprite[sprite].get_material().duplicate()
+		player_sprite[sprite].set_material(mat)
 
 func set_sprite_texture(sprite_name: String, texture_path: String) -> void:
 	player_sprite[sprite_name].set_texture(load(texture_path))
