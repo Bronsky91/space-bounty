@@ -9,11 +9,11 @@ signal bounty_progress_update
 
 func enable_room_preview_ui(enable: bool):
 	if enable:
-		get_node("/root/Game/UI/BuildRoom").visible = false
-		get_node("/root/Game/UI/BuildRoomCancel").visible = true
+		get_node("/root/Game/HUD/UI/BuildRoom").visible = false
+		get_node("/root/Game/HUD/UI/BuildRoomCancel").visible = true
 	else:
-		get_node("/root/Game/UI/BuildRoomCancel").visible = false
-		get_node("/root/Game/UI/BuildRoom").visible = true
+		get_node("/root/Game/HUD/UI/BuildRoomCancel").visible = false
+		get_node("/root/Game/HUD/UI/BuildRoom").visible = true
 
 
 func clear_room_preview():

@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var credits_label = $UI/Credits
-onready var gold_label = $UI/Gold
+onready var credits_label = $HUD/UI/CreditsLabel
+onready var gold_label = $HUD/UI/GoldLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +45,7 @@ func _on_BuildRoomCancel_pressed():
 
 func _on_AddCrew_pressed():
 	var new_character = c.CHARACTER_SCENE.instance()
-	var add_crew = get_node("UI/AddCrew")
+	var add_crew = get_node("HUD/UI/AddCrew")
 	new_character.position = Vector2(256, 64)
 	add_child(new_character)
 

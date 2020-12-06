@@ -24,7 +24,7 @@ func _on_Collect_button_up():
 		close_out_bounty()
 
 func remove_bounty_progress_bar():
-	var progress_bars = get_node('/root/Game/UI/ActiveBounties').get_children()
+	var progress_bars = get_node('/root/Game/HUD/UI/ActiveBounties').get_children()
 	for pg in progress_bars:
 		if pg.bounty_id == bounty_id:
 			pg.queue_free()

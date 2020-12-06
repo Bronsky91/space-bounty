@@ -12,7 +12,7 @@ func init(bounty: Bounty):
 	
 func _ready():
 	# After init add the bounty_window to the scene
-	get_node('/root/Game/UI').add_child(bounty_window)
+	get_node('/root/Game/HUD/UI').add_child(bounty_window)
 
 func _on_Timer_timeout():
 	$ProgressBar.value += 1

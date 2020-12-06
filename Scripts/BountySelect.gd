@@ -1,6 +1,6 @@
 extends WindowDialog
 
-onready var active_bounties: VBoxContainer = get_node("/root/Game/UI/ActiveBounties")
+onready var active_bounties: VBoxContainer = get_node("/root/Game/HUD/UI/ActiveBounties")
 
 var bounties: Array
 var selected_bounty: Bounty

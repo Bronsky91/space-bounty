@@ -4,7 +4,7 @@ var ship_rooms = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func add_room(room) -> Array:
 	ship_rooms.append(room)
