@@ -27,8 +27,6 @@ position = Vector2( -64, 0 )
 [node name="WallRight" parent="." instance=ExtResource( 6 )]
 position = Vector2( 64, 0 )
 wall = 2
-has_door = true
-has_neighbor = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

@@ -7,8 +7,31 @@ export var has_neighbor = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	display()
+
+
+func display():
+	set_attributes()
 	set_texture()
 	adjust_position()
+
+
+func set_attributes():
+	var room = get_parent()
+	var neighbor_coord: Vector2
+	if (wall == WALL.left):
+		neighbor_coord = Vector2(room.coord.x - 1, room.coord.y)
+	elif (wall == WALL.top):
+		neighbor_coord = Vector2(room.coord.x, room.coord.y - 1)
+	elif (wall == WALL.right):
+		neighbor_coord = Vector2(room.coord.x + 1, room.coord.y)
+	elif (wall == WALL.bottom):
+		neighbor_coord = Vector2(room.coord.x, room.coord.y + 1)
+		
+	if g.ship_rooms.has(neighbor_coord):
+		has_neighbor = true
+	else:
+		has_neighbor = false
 
 
 func set_texture():
@@ -42,14 +65,14 @@ func set_texture():
 
 
 func adjust_position():
+	var floor_sprite = get_node("../FloorSprite")
+	var fs = floor_sprite.texture.get_size() # floor size
+	var ws = $Sprite.texture.get_size() # wall size
 	if (wall == WALL.left):
-		position = Vector2(position.x + ($Sprite.texture.get_size().x / 2),position.y)
+		position = Vector2(-(fs.x / 2) + (ws.x / 2), 0)
 	elif (wall == WALL.top):
-		position = Vector2(position.x,position.y + ($Sprite.texture.get_size().y / 2))
+		position = Vector2(0, -(fs.y / 2) + (ws.y / 2))
 	elif (wall == WALL.right):
-		position = Vector2(position.x - ($Sprite.texture.get_size().x / 2),position.y)
+		position = Vector2((fs.x / 2) - (ws.x / 2), 0)
 	elif (wall == WALL.bottom):
-		position = Vector2(position.x,position.y - ($Sprite.texture.get_size().y / 2))
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+		position = Vector2(0, (fs.y / 2) - (ws.y / 2))

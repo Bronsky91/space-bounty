@@ -9,9 +9,6 @@ var type: String
 var generation_rate: int
 export var coord: Vector2
 
-func _ready():
-	pass
-
 func produce() -> void:
 	$Timer.start()
 	$Build.hide()

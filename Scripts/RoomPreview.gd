@@ -15,7 +15,6 @@ func _ready():
 
 func _on_Build_pressed():
 	var container = get_node("../../Rooms")
-	print(container.get_name())
 	var room = load("res://Scenes/Room.tscn")
 	var instance = room.instance()
 	instance.coord = coord
