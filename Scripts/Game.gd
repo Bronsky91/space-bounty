@@ -20,13 +20,13 @@ func _on_BuildRoom_pressed():
 		var above = Vector2(coord.x, coord.y - 1)
 		var right = Vector2(coord.x + 1, coord.y)
 		var below = Vector2(coord.x, coord.y + 1)
-		if !preview_coords.has(left):
+		if !preview_coords.has(left) and !g.ship_rooms.has(left):
 			preview_coords.append(left)
-		if !preview_coords.has(above):
+		if !preview_coords.has(above) and !g.ship_rooms.has(above):
 			preview_coords.append(above)
-		if !preview_coords.has(right):
+		if !preview_coords.has(right) and !g.ship_rooms.has(right):
 			preview_coords.append(right)
-		if !preview_coords.has(below):
+		if !preview_coords.has(below) and !g.ship_rooms.has(below):
 			preview_coords.append(below)
 	for coord in preview_coords:
 		var instance = preview_room.instance()
