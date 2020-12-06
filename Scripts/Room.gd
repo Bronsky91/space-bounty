@@ -7,6 +7,7 @@ const CHARACTER_SCENE = preload("res://Scenes/Character.tscn")
 var is_productive: bool = false
 var type: String
 var generation_rate: int
+var coord: Vector2
 
 func _ready():
 	pass
