@@ -1,10 +1,36 @@
 extends Node2D
 
+var speed = 50
+var destination: Vector2
+var path: PoolVector2Array
+var nav: Navigation2D
+
 func _ready():
 	$AnimationPlayer.play("IdleDown")
+	print(nav)
 
 func _process(delta):
-	pass
+	# Calculate the movement distance for this frame
+	var distance_to_walk = speed * delta
+	
+	# Move the character along the path until he has run out of movement or the path ends.
+	while distance_to_walk > 0 and path.size() > 0:
+		var distance_to_next_point = position.distance_to(path[0])
+		if distance_to_walk <= distance_to_next_point:
+			# The character does not have enough movement left to get to the next point.
+			position += position.direction_to(path[0]) * distance_to_walk
+		else:
+			# The character get to the next point
+			position = path[0]
+			path.remove(0)
+		# Update the distance to walk
+		distance_to_walk -= distance_to_next_point
+	
+func _input(event):
+	if event.is_action_released("left_click"):
+		destination = get_global_mouse_position()
+		path = nav.get_simple_path(position, destination)
+		print(path)
 
 func _on_AnimationPlayer_animation_started(anim_name):
 	if 'Down' in anim_name:
