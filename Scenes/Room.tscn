@@ -15,18 +15,26 @@ texture = ExtResource( 1 )
 
 [node name="WallTop" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, -64 )
-wall = 1
 
 [node name="WallBottom" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, 64 )
+wall = 5
+
+[node name="WallLeft1" parent="." instance=ExtResource( 6 )]
+position = Vector2( -64, 0 )
+wall = 0
+
+[node name="WallLeft2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -64, 0 )
+wall = 1
+
+[node name="WallRight1" parent="." instance=ExtResource( 6 )]
+position = Vector2( 64, 0 )
 wall = 3
 
-[node name="WallLeft" parent="." instance=ExtResource( 6 )]
-position = Vector2( -64, 0 )
-
-[node name="WallRight" parent="." instance=ExtResource( 6 )]
+[node name="WallRight2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 64, 0 )
-wall = 2
+wall = 4
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

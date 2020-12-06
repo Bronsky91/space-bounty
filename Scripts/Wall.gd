@@ -1,7 +1,7 @@
 extends Node2D
 
-enum WALL { left,top,right,bottom }
-export(WALL) var wall = WALL.left
+enum WALL { left1,left2,top,right1,right2,bottom }
+export(WALL) var wall = WALL.top
 export var has_door = false
 export var has_neighbor = false
 
@@ -19,11 +19,11 @@ func display():
 func set_attributes():
 	var room = get_parent()
 	var neighbor_coord: Vector2
-	if (wall == WALL.left):
+	if (wall == WALL.left1 or wall == WALL.left2):
 		neighbor_coord = Vector2(room.coord.x - 1, room.coord.y)
 	elif (wall == WALL.top):
 		neighbor_coord = Vector2(room.coord.x, room.coord.y - 1)
-	elif (wall == WALL.right):
+	elif (wall == WALL.right1 or wall == WALL.right2):
 		neighbor_coord = Vector2(room.coord.x + 1, room.coord.y)
 	elif (wall == WALL.bottom):
 		neighbor_coord = Vector2(room.coord.x, room.coord.y + 1)
@@ -37,7 +37,7 @@ func set_attributes():
 
 
 func set_texture():
-	if (wall == WALL.left or wall == WALL.right):
+	if (wall == WALL.left1 or wall == WALL.right1):
 		if(!has_door && !has_neighbor):
 			$Sprite.texture = load("res://Assets/Ship/Wall/Wall_001_SideA.png")
 		elif(has_door && !has_neighbor):
@@ -46,6 +46,15 @@ func set_texture():
 			$Sprite.texture = load("res://Assets/Ship/Wall/WallThin_001_SideA.png")
 		elif(has_door && has_neighbor):
 			$Sprite.texture = load("res://Assets/Ship/Wall/WallThin_001_SideB.png")
+	elif (wall == WALL.left2 or wall == WALL.right2):
+		if(!has_door && !has_neighbor):
+			$Sprite.texture = null
+		elif(has_door && !has_neighbor):
+			$Sprite.texture = load("res://Assets/Ship/Wall/Wall_001_SideC.png")
+		elif(!has_door && has_neighbor):
+			$Sprite.texture = null
+		elif(has_door && has_neighbor):
+			$Sprite.texture = load("res://Assets/Ship/Wall/WallThin_001_SideC.png")
 	elif (wall == WALL.top):
 		if(!has_door && !has_neighbor):
 			$Sprite.texture = load("res://Assets/Ship/Wall/Wall_001_TopA.png")
@@ -69,12 +78,14 @@ func set_texture():
 func adjust_position():
 	var floor_sprite = get_node("../FloorSprite")
 	var fs = floor_sprite.texture.get_size() # floor size
-	var ws = $Sprite.texture.get_size() # wall size
-	if (wall == WALL.left):
+	var ws = Vector2(0,0)
+	if($Sprite.texture):
+		ws = $Sprite.texture.get_size() # wall size
+	if (wall == WALL.left1 or wall == WALL.left2):
 		position = Vector2(-(fs.x / 2) + (ws.x / 2), 0)
 	elif (wall == WALL.top):
 		position = Vector2(0, -(fs.y / 2) + (ws.y / 2))
-	elif (wall == WALL.right):
+	elif (wall == WALL.right1 or wall == WALL.right2):
 		position = Vector2((fs.x / 2) - (ws.x / 2), 0)
 	elif (wall == WALL.bottom):
 		position = Vector2(0, (fs.y / 2) - (ws.y / 2))
