@@ -21,5 +21,6 @@ func _on_Build_pressed():
 	instance.position = position
 	container.call_deferred("add_child", instance)
 	g.ship_rooms.append(coord)
+	g.enable_room_preview_ui(false)
 	g.clear_room_preview()
 

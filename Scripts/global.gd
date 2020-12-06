@@ -6,6 +6,16 @@ var ship_rooms = [Vector2(0,0)]
 
 signal bounty_progress_update
 
+
+func enable_room_preview_ui(enable: bool):
+	if enable:
+		get_node("/root/Game/UI/BuildRoom").visible = false
+		get_node("/root/Game/UI/BuildRoomCancel").visible = true
+	else:
+		get_node("/root/Game/UI/BuildRoomCancel").visible = false
+		get_node("/root/Game/UI/BuildRoom").visible = true
+
+
 func clear_room_preview():
 	var rooms = get_node("/root/Game/Fleet/Ship/Rooms").get_children()
 	var room_previews = get_node("/root/Game/Fleet/Ship/RoomPreviews").get_children()
