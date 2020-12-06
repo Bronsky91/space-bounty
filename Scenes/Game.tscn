@@ -51,9 +51,10 @@ anchor_left = 4.802
 anchor_top = 0.071
 anchor_right = 4.802
 anchor_bottom = 0.071
-margin_left = -1.33484
-margin_right = 177.515
-margin_bottom = 176.9
+margin_left = 451.067
+margin_top = 5.04538
+margin_right = 629.917
+margin_bottom = 181.945
 mouse_filter = 2
 script = ExtResource( 3 )
 __meta__ = {
@@ -92,6 +93,7 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 319.541, 479.311 )
 current = true
 script = ExtResource( 6 )
 [connection signal="pressed" from="HUD/UI/BuildRoom" to="." method="_on_BuildRoom_pressed"]

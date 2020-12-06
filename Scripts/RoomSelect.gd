@@ -8,15 +8,13 @@ const build_options: Array = [
 	c.GREEN_HOUSE,
 ]
 
-var current_credits: int
 var current_selected_room_cost: int
 var build_type_index: int
 
 func _ready():
 	r.connect("credits_changed", self, "_on_credits_changed")
-	
+
 func _on_credits_changed(new_credits_value: int):
-	current_credits = new_credits_value
 	toggle_build_room()
 
 func _on_RoomBuildWindowDialog_about_to_show():
@@ -43,4 +41,4 @@ func _on_BuildRoom_button_up() -> void:
 	hide()
 	
 func toggle_build_room():
-	$BuildRoom.disabled = current_selected_room_cost > current_credits
+	$BuildRoom.disabled = current_selected_room_cost > r.credits
