@@ -30,8 +30,10 @@ func set_attributes():
 		
 	if g.ship_rooms.has(neighbor_coord):
 		has_neighbor = true
+		has_door = true
 	else:
 		has_neighbor = false
+		has_door = false
 
 
 func set_texture():
