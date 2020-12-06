@@ -1,6 +1,8 @@
 extends Node
 
 var bounties_in_progress = []
+var helm_position = Vector2(256,256)
+var ship_rooms = [Vector2(0,0)]
 
 signal bounty_progress_update
 

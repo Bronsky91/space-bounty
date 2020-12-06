@@ -9,3 +9,27 @@ func _ready():
 	r.gold_label = gold_label
 	r.add_credits(100)
 	r.add_gold(100)
+
+
+func _on_BuildRoom_pressed():
+	var ship = get_node("Fleet/Ship")
+	var preview_room = load("res://Scenes/RoomPreview.tscn")
+	var preview_coords = []
+	for coord in g.ship_rooms:
+		var left = Vector2(coord.x - 1, coord.y)
+		var above = Vector2(coord.x, coord.y - 1)
+		var right = Vector2(coord.x + 1, coord.y)
+		var below = Vector2(coord.x, coord.y + 1)
+		if !preview_coords.has(left):
+			preview_coords.append(left)
+		if !preview_coords.has(above):
+			preview_coords.append(above)
+		if !preview_coords.has(right):
+			preview_coords.append(right)
+		if !preview_coords.has(below):
+			preview_coords.append(below)
+	for coord in preview_coords:
+		var pr = preview_room.instance()
+		pr.position = Vector2(g.helm_position.x + coord.x * 128, g.helm_position.y + coord.y * 128)
+		ship.call_deferred("add_child", pr)
+
