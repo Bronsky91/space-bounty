@@ -1,5 +1,10 @@
 extends Node
 
+const EMPTY_ROOM = preload("res://Assets/room-empty.jpg")
+const ROOM = preload("res://Assets/room-test.jpg")
+const CHARACTER_SCENE = preload("res://Scenes/Character.tscn")
+const BOUNTY_WINDOW = preload("res://Scenes/ActiveBountyWindow.tscn")
+
 # Room Types
 const MISSION: String = 'Mission'
 const COMPUTER: String = 'Server Room'

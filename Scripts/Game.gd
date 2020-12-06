@@ -41,3 +41,11 @@ func _on_BuildRoomCancel_pressed():
 	g.enable_room_preview_ui(false)
 	g.clear_room_preview()
 
+
+
+func _on_AddCrew_pressed():
+	var new_character = c.CHARACTER_SCENE.instance()
+	var add_crew = get_node("UI/AddCrew")
+	new_character.position = Vector2(256, 64)
+	add_child(new_character)
+

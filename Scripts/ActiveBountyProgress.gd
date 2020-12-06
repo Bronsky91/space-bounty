@@ -1,14 +1,12 @@
 extends Button
 
-const BOUNTY_WINDOW = preload("res://Scenes/ActiveBountyWindow.tscn")
-
 var bounty_id
 var bounty_window
 	
 func init(bounty: Bounty):
 	bounty_id = bounty.id
 	$Label.text = bounty.name
-	bounty_window = BOUNTY_WINDOW.instance()
+	bounty_window = c.BOUNTY_WINDOW.instance()
 	bounty_window.bounty_id = bounty_id
 	bounty_window.hide()
 	

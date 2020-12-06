@@ -5,7 +5,12 @@ export var coord: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$FloorSprite.modulate.a = 0.5
+	$WallTop.modulate.a = 0.5
+	$WallBottom.modulate.a = 0.5
+	$WallLeft.modulate.a = 0.5
+	$WallRight.modulate.a = 0.5
+	$BlueOverlay.modulate.a = 0.5
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

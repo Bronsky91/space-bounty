@@ -69,6 +69,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AddCrew" type="Button" parent="UI"]
+margin_left = 511.0
+margin_top = 831.21
+margin_right = 607.0
+margin_bottom = 867.21
+text = "Add NPC"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BuildRoomCancel" type="Button" parent="UI"]
 visible = false
 margin_left = 511.0
@@ -80,4 +90,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="UI/BuildRoom" to="." method="_on_BuildRoom_pressed"]
+[connection signal="pressed" from="UI/AddCrew" to="." method="_on_AddCrew_pressed"]
 [connection signal="pressed" from="UI/BuildRoomCancel" to="." method="_on_BuildRoomCancel_pressed"]
