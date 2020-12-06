@@ -18,4 +18,4 @@ text = "Build"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="button_up" from="Build" to="." method="_on_Build_button_up"]
+[connection signal="pressed" from="Build" to="." method="_on_Build_pressed"]

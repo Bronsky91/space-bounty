@@ -12,7 +12,7 @@ func _ready():
 
 
 func _on_BuildRoom_pressed():
-	var ship = get_node("Fleet/Ship")
+	var container = get_node("Fleet/Ship/RoomPreviews")
 	var preview_room = load("res://Scenes/RoomPreview.tscn")
 	var preview_coords = []
 	for coord in g.ship_rooms:
@@ -29,7 +29,8 @@ func _on_BuildRoom_pressed():
 		if !preview_coords.has(below):
 			preview_coords.append(below)
 	for coord in preview_coords:
-		var pr = preview_room.instance()
-		pr.position = Vector2(g.helm_position.x + coord.x * 128, g.helm_position.y + coord.y * 128)
-		ship.call_deferred("add_child", pr)
+		var instance = preview_room.instance()
+		instance.coord = coord
+		instance.position = Vector2(g.helm_position.x + coord.x * 128, g.helm_position.y + coord.y * 128)
+		container.call_deferred("add_child", instance)
 

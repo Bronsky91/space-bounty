@@ -43,21 +43,13 @@ func set_texture():
 
 func adjust_position():
 	if (wall == WALL.left):
-		print("left before: " + str(position) + " " + str($Sprite.texture.get_size()))
 		position = Vector2(position.x + ($Sprite.texture.get_size().x / 2),position.y)
-		print("left after: " + str(position) + " " + str($Sprite.texture.get_size()))
 	elif (wall == WALL.top):
-		print("top before: " + str(position) + " " + str($Sprite.texture.get_size()))
 		position = Vector2(position.x,position.y + ($Sprite.texture.get_size().y / 2))
-		print("top after: " + str(position) + " " + str($Sprite.texture.get_size()))
 	elif (wall == WALL.right):
-		print("right before: " + str(position) + " " + str($Sprite.texture.get_size()))
 		position = Vector2(position.x - ($Sprite.texture.get_size().x / 2),position.y)
-		print("right after: " + str(position) + " " + str($Sprite.texture.get_size()))
 	elif (wall == WALL.bottom):
-		print("bottom before: " + str(position) + " " + str($Sprite.texture.get_size()))
 		position = Vector2(position.x,position.y - ($Sprite.texture.get_size().y / 2))
-		print("bottom after: " + str(position) + " " + str($Sprite.texture.get_size()))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

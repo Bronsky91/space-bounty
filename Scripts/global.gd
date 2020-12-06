@@ -6,6 +6,11 @@ var ship_rooms = [Vector2(0,0)]
 
 signal bounty_progress_update
 
+func clear_room_preview():
+	var room_previews = get_node("/root/Game/Fleet/Ship/RoomPreviews").get_children()
+	for child in room_previews:
+		child.queue_free()
+
 func apply_in_progress_bounty(bounty: Bounty):
 	bounties_in_progress.append(bounty)
 
