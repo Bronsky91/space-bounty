@@ -1,20 +1,24 @@
 extends Node2D
 
+export var coord: Vector2
+
 var is_productive: bool = false
 var type: String
 var generation_rate: int
-export var coord: Vector2
+
+onready var available_positions = $Positions.get_children()
+
+func _ready():
+	pass
 
 func produce() -> void:
 	$Timer.start()
 	$Edit.hide()
 	#$RoomSprite.texture = c.ROOM
 
-
 func start_production() -> void:
 	is_productive = true
 	produce()
-
 
 func build(specs: Dictionary) -> void:
 	r.subtract_credits(specs.cost)
@@ -40,4 +44,11 @@ func _on_Edit_pressed():
 
 func _on_MissionStart_button_up():
 	$BountySelect.popup()
+
+func free_position(pos):
+	if pos:
+		available_positions.append(pos)
+	
+func take_position(pos):
+	available_positions.erase(pos)
 

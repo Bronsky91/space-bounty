@@ -22,13 +22,14 @@ func clear_room_preview():
 	for child in room_previews:
 		child.queue_free()
 	for child in rooms:
-		if not child is YSort:
-			child.get_node("WallLeft1").display()
-			child.get_node("WallLeft2").display()
-			child.get_node("WallTop").display()
-			child.get_node("WallRight1").display()
-			child.get_node("WallRight2").display()
-			child.get_node("WallBottom").display()
+		if child is YSort:
+			continue
+		child.get_node("WallLeft1").display()
+		child.get_node("WallLeft2").display()
+		child.get_node("WallTop").display()
+		child.get_node("WallRight1").display()
+		child.get_node("WallRight2").display()
+		child.get_node("WallBottom").display()
 
 func apply_in_progress_bounty(bounty: Bounty):
 	bounties_in_progress.append(bounty)

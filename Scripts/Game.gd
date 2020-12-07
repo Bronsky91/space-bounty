@@ -44,7 +44,7 @@ func _on_BuildRoomCancel_pressed():
 
 func _on_AddCrew_pressed():
 	var new_character = c.CHARACTER_SCENE.instance()
-	var hull = get_node("Fleet/Ship/Rooms/Navigation2D/Helm")
+	var hull = get_node("Fleet/Ship/Rooms/Navigation2D/HelmRoom")
 	new_character.nav = get_node("Fleet/Ship/Rooms/Navigation2D")
 	new_character.position = hull.position
 	get_node("Fleet/Ship/Rooms/Navigation2D/YSort").add_child(new_character)

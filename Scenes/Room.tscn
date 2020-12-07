@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Ship/Floor/Floor_001.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Room.gd" type="Script" id=2]
@@ -47,6 +47,9 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 64, 64 )
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )
@@ -243,6 +246,27 @@ margin_top = 92.5156
 margin_right = 1.36339
 margin_bottom = 99.5316
 text = "Cost: "
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 4 )
+
+[node name="Positions" type="Node2D" parent="."]
+
+[node name="UpperLeftPos" type="Position2D" parent="Positions"]
+position = Vector2( -26.0615, -19.0818 )
+
+[node name="LowerRightPos" type="Position2D" parent="Positions"]
+position = Vector2( 19.6431, 19.0819 )
+
+[node name="UpperRightPos" type="Position2D" parent="Positions"]
+position = Vector2( 25.0105, -19.6431 )
+
+[node name="LowerLeftPos" type="Position2D" parent="Positions"]
+position = Vector2( -21.3268, 18.5206 )
+
+[node name="MiddlePos" type="Position2D" parent="Positions"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Edit" to="." method="_on_Edit_pressed"]
 [connection signal="button_up" from="BountyStart" to="." method="_on_MissionStart_button_up"]

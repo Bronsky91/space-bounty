@@ -1,6 +1,6 @@
 extends Camera2D
 
-onready var helm = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D/Helm")
+onready var helm = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D/HelmRoom")
 var _previousPosition: Vector2 = Vector2(0, 0);
 var _moveCamera: bool = false;
 

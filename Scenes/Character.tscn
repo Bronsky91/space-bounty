@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Human/Female/HairB/Human_Female_HairB_001.png" type="Texture" id=3]
@@ -995,6 +995,10 @@ tracks/7/keys = {
 "values": [ 24, 25, 26, 27, 28, 29, 30, 31 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=25]
+radius = 7.21246
+height = 37.6481
+
 [node name="Character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -1066,4 +1070,21 @@ anims/WalkUp = SubResource( 24 )
 
 [node name="CharacterGenerator" type="Node" parent="."]
 script = ExtResource( 11 )
+
+[node name="ChangeRoomTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="ChangePosTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1.41421, -1.76777 )
+shape = SubResource( 25 )
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="timeout" from="ChangeRoomTimer" to="." method="_on_ChangeRoomTimer_timeout"]
+[connection signal="timeout" from="ChangePosTimer" to="." method="_on_ChangePosTimer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

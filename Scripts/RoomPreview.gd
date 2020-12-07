@@ -28,7 +28,6 @@ func _on_Build_pressed():
 	#container.call_deferred("add_child", instance)
 	container.add_child(instance)
 	var last_index = instance.get_index()
-	print(last_index)
 	container.move_child(ysort, last_index + 1)
 	g.ship_rooms.append(coord)
 	g.enable_room_preview_ui(false)
