@@ -90,26 +90,28 @@ func get_random_room_position(room: Node2D):
 	randomize()
 	var rand_pos = randi() % positions.size()
 	return positions[rand_pos]
-	
+
 func move_rooms():
 	if get_all_rooms().size() > 1:
 		moving_rooms = true
 		destination_room = get_random_room()
 		move_room_position(destination_room)
-		
+
 func move_position_in_current_room():
 	if not moving_rooms:
 		move_room_position(current_room)
-	
+
 func move_room_position(room):
-	room.free_position(current_room_pos)
 	var room_pos = get_random_room_position(room)
 	if not room_pos:
 		# No available positions in the room, character moving rooms
 		return move_rooms()
-	room.take_position(room_pos)
-	current_room_pos = room_pos
+	current_room.free_position(current_room_pos)
+	current_room_pos = room.take_position(room_pos)
 	path = nav.get_simple_path(position, room_pos.global_position)
+	if name == "Character":
+		print(current_room_pos.name)
+		print(room.available_positions)
 	
 func _on_ChangeRoomTimer_timeout():
 	move_rooms()

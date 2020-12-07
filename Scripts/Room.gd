@@ -51,4 +51,5 @@ func free_position(pos):
 	
 func take_position(pos):
 	available_positions.erase(pos)
+	return pos
 
