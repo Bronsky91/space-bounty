@@ -12,7 +12,8 @@ onready var player_sprite: Dictionary = {
 	'HairB': character.get_node("HairB"),
 	'Head': character.get_node("Head"),
 	'Top': character.get_node("Top"),
-	'Eyebrow': character.get_node("Eyebrow")
+	'Eyebrow': character.get_node("Eyebrow"),
+	'Hat': character.get_node("Hat")
 }
 
 onready var palette_sprite_dict: Dictionary = {
@@ -32,6 +33,7 @@ onready var palette_sprite_dict: Dictionary = {
 	'Top': [
 		player_sprite['Top'],
 	],
+	'Hat': player_sprite['Hat']
 }
 
 var pallete_sprite_state: Dictionary
@@ -39,7 +41,7 @@ var sprite_state: Dictionary
 
 var player_name: String
 var race: String = "Human" # Temp hardcoded
-var gender: String = "Female" # Temp hardcoded
+var gender: String
 
 var current_animation = 0
 
@@ -82,13 +84,23 @@ func random_asset(folder: String, keyword: String = "") -> String:
 	var random_index = randi() % len(files)
 	return folder+"/"+files[random_index]
 	
+func get_random_gender():
+	randomize()
+	var index = randi() % 2
+	gender = ['Male', 'Female'][index]
+	
 func create_random_character() -> void:
+	get_random_gender()
 	var sprite_folder_path = "res://Assets/{race}/{gender}".format({"race": race, "gender": gender})
 	var palette_folder_path = "res://Assets/Palettes"
 	var sprite_folders = g.files_in_dir(sprite_folder_path)
 	var palette_folders = g.files_in_dir(palette_folder_path)
 	for folder in sprite_folders:
-		var random_sprite = random_asset(sprite_folder_path+"/"+folder, "Idle")
+		var random_sprite = random_asset(sprite_folder_path+"/"+folder)
+		if gender == 'Male' and folder == 'HairB': # Don't use HairB for males 80 percent of the time
+			randomize()
+			if randf() <= 0.8:
+				continue
 		if random_sprite == "": # No assets in the folder yet continue to next folder
 			continue
 		if "000" in random_sprite: # Prevent some empty sprite sheets
@@ -96,7 +108,6 @@ func create_random_character() -> void:
 				continue
 			if "Top" in folder or "Bottom" in folder: # If no top or no bottom was returned, dont set the texture
 				continue
-		#player_sprite[folder].set_texture(load(random_sprite))
 		set_sprite_texture(folder, random_sprite)
 	for folder in palette_folders:
 		var random_color = random_asset(palette_folder_path+"/"+folder)

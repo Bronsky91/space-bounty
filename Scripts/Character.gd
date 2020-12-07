@@ -109,9 +109,6 @@ func move_room_position(room):
 	current_room.free_position(current_room_pos)
 	current_room_pos = room.take_position(room_pos)
 	path = nav.get_simple_path(position, room_pos.global_position)
-	if name == "Character":
-		print(current_room_pos.name)
-		print(room.available_positions)
 	
 func _on_ChangeRoomTimer_timeout():
 	move_rooms()
