@@ -1,14 +1,15 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Human/Female/HairB/Human_Female_HairB_001.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Human/Female/Body/Human_Female_Body_001.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Human/Female/Bottom/Human_Female_Bottom_001.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Human/Female/Top/Human_Female_Top_001.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Human/Male/Body/Human_Male_Body_001.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Human/Male/HairB/Human_Male_HairB_001.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Human/Male/Bottom/Human_Male_Bottom_001.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Human/Male/Top/Human_Male_Top_001.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Human/Male/Eyes/Human_Male_Eyes_001.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Human/Female/Head/Human_Female_Head_001.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Human/Female/Eyes/Human_Female_Eyes_001.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Human/Female/Eyebrow/Human_Female_Eyebrow_001.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Human/Female/HairA/Human_Female_HairA_001.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Human/Male/Eyebrow/Human_Male_Eyebrow_002.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Human/Male/HairA/Human_Male_HairA_002.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Human/Male/Hat/Hat_001.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/CharacterGenerator.gd" type="Script" id=11]
 
 [sub_resource type="Shader" id=1]
@@ -172,7 +173,7 @@ void fragment()
 [sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 13 )
 
-[sub_resource type="Shader" id=15]
+[sub_resource type="Shader" id=28]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -192,8 +193,31 @@ void fragment()
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=16]
-shader = SubResource( 15 )
+[sub_resource type="ShaderMaterial" id=29]
+shader = SubResource( 28 )
+
+[sub_resource type="Shader" id=27]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D palette_swap : hint_albedo;
+uniform sampler2D greyscale_palette : hint_albedo;
+
+void fragment()
+{
+	vec4 old_color = texture(TEXTURE, UV);
+	vec2 swap_coord = vec2 ( old_color.r, 0);
+	vec4 new_color = texture(palette_swap, swap_coord);
+	if (old_color == texture(greyscale_palette, swap_coord)){
+		new_color.a *= old_color.a;
+		COLOR = new_color;
+	} else {
+		COLOR = old_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=26]
+shader = SubResource( 27 )
 
 [sub_resource type="Animation" id=17]
 length = 2.5
@@ -292,6 +316,18 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.4, 0.9, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
+"values": [ 12, 13, 14, 15 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Hat:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
 "values": [ 12, 13, 14, 15 ]
 }
 
@@ -1007,56 +1043,63 @@ material = SubResource( 2 )
 texture = ExtResource( 3 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="Body" type="Sprite" parent="."]
 material = SubResource( 4 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="Bottom" type="Sprite" parent="."]
 material = SubResource( 6 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="Top" type="Sprite" parent="."]
 material = SubResource( 8 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="Head" type="Sprite" parent="."]
 material = SubResource( 10 )
 texture = ExtResource( 7 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="Eyes" type="Sprite" parent="."]
 material = SubResource( 12 )
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="Eyebrow" type="Sprite" parent="."]
 material = SubResource( 14 )
+texture = ExtResource( 8 )
+vframes = 6
+hframes = 8
+frame = 14
+
+[node name="HairA" type="Sprite" parent="."]
+material = SubResource( 29 )
 texture = ExtResource( 9 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
-[node name="HairA" type="Sprite" parent="."]
-material = SubResource( 16 )
+[node name="Hat" type="Sprite" parent="."]
+material = SubResource( 26 )
 texture = ExtResource( 10 )
 vframes = 6
 hframes = 8
-frame = 43
+frame = 14
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IdleDown = SubResource( 17 )
