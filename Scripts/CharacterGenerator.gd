@@ -99,7 +99,7 @@ func create_random_character() -> void:
 		var random_sprite = random_asset(sprite_folder_path+"/"+folder)
 		if gender == 'Male' and folder == 'HairB': # Don't use HairB for males 80 percent of the time
 			randomize()
-			if randf() > 0.8:
+			if randf() <= 0.8:
 				continue
 		if random_sprite == "": # No assets in the folder yet continue to next folder
 			continue
