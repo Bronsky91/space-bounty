@@ -33,7 +33,7 @@ onready var palette_sprite_dict: Dictionary = {
 	'Top': [
 		player_sprite['Top'],
 	],
-	'Hat': player_sprite['Hat']
+	'Hat': [player_sprite['Hat']]
 }
 
 var pallete_sprite_state: Dictionary
