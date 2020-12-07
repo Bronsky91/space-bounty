@@ -51,10 +51,12 @@ func set_texture():
 			$Sprite.texture = null
 		elif(has_door && !has_neighbor):
 			$Sprite.texture = load("res://Assets/Ship/Wall/Wall_001_SideC.png")
+			$Sprite.z_index = 1
 		elif(!has_door && has_neighbor):
 			$Sprite.texture = null
 		elif(has_door && has_neighbor):
 			$Sprite.texture = load("res://Assets/Ship/Wall/WallThin_001_SideC.png")
+			$Sprite.z_index = 1
 	elif (wall == WALL.top):
 		if(!has_door && !has_neighbor):
 			$Sprite.texture = load("res://Assets/Ship/Wall/Wall_001_TopA.png")
