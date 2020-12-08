@@ -30,9 +30,9 @@ func resize(newSize: int) -> void:
 				g.set_tile_neighbor(old_tile.neighbor_right, c.DIRECTION.left, new_tile2.id)
 			if(old_tile.neighbor_bottom):
 				g.set_tile_neighbor(old_tile.neighbor_bottom, c.DIRECTION.up, new_tile2.id)
-			print("RoomTile: " + new_tile.neighbor_left + " ::: " + new_tile.neighbor_top + " ::: " + new_tile.neighbor_right + " ::: " + new_tile.neighbor_bottom )
-			print("RoomTile2: " + new_tile2.neighbor_left + " ::: " + new_tile2.neighbor_top + " ::: " + new_tile2.neighbor_right + " ::: " + new_tile2.neighbor_bottom )
 			old_tile.set_neighbors("","","","")
+	
+	g.seek_missing_neighbors(self)
 	g.reposition_rooms()
 	g.refresh_walls()
 

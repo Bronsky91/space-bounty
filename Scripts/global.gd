@@ -444,6 +444,29 @@ func refresh_walls():
 			else:
 				size.hide()
 
+# Scans spaces adjascent to provided room to add any missing neighbors
+func seek_missing_neighbors(r: Node2D):
+	var rooms = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D").get_children()
+	for room in rooms:
+		if room.name == "YSort" or room.id == r.id:
+			continue
+		for tile in room.get_node("Size/" + c.SIZES[room.size]).get_children():
+			for rt in r.get_node("Size/" + c.SIZES[r.size]).get_children():
+				var seeking = Vector2(r.position.x + rt.position.x, r.position.y + rt.position.y)
+				var scanning = Vector2(room.position.x + tile.position.x, room.position.y + tile.position.y)
+				if !rt.neighbor_left and !rt.is_interior_left and Vector2(seeking.x - 128, seeking.y) == scanning:
+					rt.neighbor_left = tile.id
+					tile.neighbor_right = rt.id
+				if !rt.neighbor_top and !rt.is_interior_top and Vector2(seeking.x, seeking.y - 128) == scanning:
+					rt.neighbor_top = tile.id
+					tile.neighbor_bottom = rt.id
+				if !rt.neighbor_right and !rt.is_interior_right and Vector2(seeking.x + 128, seeking.y) == scanning:
+					rt.neighbor_right = tile.id
+					tile.neighbor_left = rt.id
+				if !rt.neighbor_bottom and !rt.is_interior_bottom and Vector2(seeking.x, seeking.y + 128) == scanning:
+					rt.neighbor_bottom = tile.id
+					tile.neighbor_top = rt.id
+
 
 func set_tile_neighbor(tile_id: String, neighbor_dir: int, neighbor_id: String):
 	var rooms = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D").get_children()
