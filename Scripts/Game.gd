@@ -12,29 +12,51 @@ func _ready():
 
 
 func _on_BuildRoom_pressed():
-	g.enable_room_preview_ui(true)
-	var container = get_node("Fleet/Ship/RoomPreviews")
-	var preview_room = load("res://Scenes/RoomPreview.tscn")
-	var preview_coords = []
-	for coord in g.ship_rooms:
-		var left = Vector2(coord.x - 1, coord.y)
-		var above = Vector2(coord.x, coord.y - 1)
-		var right = Vector2(coord.x + 1, coord.y)
-		var below = Vector2(coord.x, coord.y + 1)
-		if !preview_coords.has(left) and !g.ship_rooms.has(left):
-			preview_coords.append(left)
-		if !preview_coords.has(above) and !g.ship_rooms.has(above):
-			preview_coords.append(above)
-		if !preview_coords.has(right) and !g.ship_rooms.has(right):
-			preview_coords.append(right)
-		if !preview_coords.has(below) and !g.ship_rooms.has(below):
-			preview_coords.append(below)
-	for coord in preview_coords:
-		var instance = preview_room.instance()
-		instance.coord = coord
-		instance.position = Vector2(g.helm_position.x + coord.x * 128, g.helm_position.y + coord.y * 128)
-		container.call_deferred("add_child", instance)
+	g.set_room_preview_ui(true)
+	var rooms = get_node("Fleet/Ship/Rooms/Navigation2D")
+	
+	for room in rooms.get_children():
+		if room.name == "YSort":
+			continue
+		else:
+			print("room: " + room.name)
+			for tile in room.get_node("Size/" + c.SIZES[room.size]).get_children():
+				var pos = Vector2(room.position.x + tile.position.x, room.position.y + tile.position.y)
+				if !tile.neighbor_left and !tile.is_interior_left:
+					add_preview_room(c.DIRECTION.right, tile.id, Vector2(pos.x - 128, pos.y))
+				if !tile.neighbor_top and !tile.is_interior_top:
+					add_preview_room(c.DIRECTION.down, tile.id, Vector2(pos.x, pos.y - 128))
+				if !tile.neighbor_right and !tile.is_interior_right:
+					add_preview_room(c.DIRECTION.left, tile.id, Vector2(pos.x + 128, pos.y))
+				if !tile.neighbor_bottom and !tile.is_interior_bottom:
+					add_preview_room(c.DIRECTION.up, tile.id, Vector2(pos.x, pos.y + 128))
 
+
+func add_preview_room(neighbor_dir: int, neighbor_id: String, pos: Vector2):
+	var occupied: bool = false
+	for pr in get_node("Fleet/Ship/RoomPreviews").get_children():
+		if pr.position == pos:
+			occupied = true
+			if neighbor_dir == c.DIRECTION.left:
+				pr.neighbor_left = neighbor_id
+			elif neighbor_dir == c.DIRECTION.up:
+				pr.neighbor_top = neighbor_id
+			elif neighbor_dir == c.DIRECTION.right:
+				pr.neighbor_right = neighbor_id
+			elif neighbor_dir == c.DIRECTION.down:
+				pr.neighbor_bottom = neighbor_id
+	if !occupied:
+		var preview_room = load("res://Scenes/RoomPreview.tscn").instance()
+		preview_room.position = pos
+		if neighbor_dir == c.DIRECTION.left:
+			preview_room.neighbor_left = neighbor_id
+		elif neighbor_dir == c.DIRECTION.up:
+			preview_room.neighbor_top = neighbor_id
+		elif neighbor_dir == c.DIRECTION.right:
+			preview_room.neighbor_right = neighbor_id
+		elif neighbor_dir == c.DIRECTION.down:
+			preview_room.neighbor_bottom = neighbor_id
+		get_node("Fleet/Ship/RoomPreviews").add_child(preview_room)
 
 
 func _on_BuildRoomCancel_pressed():
@@ -44,8 +66,8 @@ func _on_BuildRoomCancel_pressed():
 
 func _on_AddCrew_pressed():
 	var new_character = c.CHARACTER_SCENE.instance()
-	var hull = get_node("Fleet/Ship/Rooms/Navigation2D/HelmRoom")
+	var bridge = get_node("Fleet/Ship/Rooms/Navigation2D/BridgeRoom")
 	new_character.nav = get_node("Fleet/Ship/Rooms/Navigation2D")
-	new_character.position = hull.position
+	new_character.position = bridge.position
 	get_node("Fleet/Ship/Rooms/Navigation2D/YSort").add_child(new_character)
 

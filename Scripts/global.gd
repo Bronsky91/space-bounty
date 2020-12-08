@@ -1,14 +1,45 @@
 extends Node
 
 var bounties_in_progress = []
-var helm_position = Vector2(256,256)
-var ship_rooms = [Vector2(0,0)]
-var size = "Small"
+var bridge_position = Vector2(256,256)
+var room_id_tracker = 0
 
 signal bounty_progress_update
 
+func new_room_id():
+	room_id_tracker += 1
+	return room_id_tracker
 
-func enable_room_preview_ui(enable: bool):
+
+func set_tile_neighbor(tile_id: String, neighbor_dir: int, neighbor_id: String):
+	var rooms = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D").get_children()
+	for room in rooms:
+		if room is YSort:
+			continue
+		var sizes = room.get_node("Size").get_children()
+		for size in sizes:
+			if size.get_name() == c.SIZES[room.size]:
+				for tile in size.get_children():
+					if tile.id == tile_id:
+						size.show()
+						if neighbor_dir == c.DIRECTION.left:
+							tile.neighbor_left = neighbor_id
+						elif neighbor_dir == c.DIRECTION.up:
+							tile.neighbor_top = neighbor_id
+						elif neighbor_dir == c.DIRECTION.right:
+							tile.neighbor_right = neighbor_id
+						elif neighbor_dir == c.DIRECTION.down:
+							tile.neighbor_bottom = neighbor_id
+						for wall in tile.get_node("Walls").get_children():
+							wall.display()
+
+
+func exit_room_preview():
+	g.set_room_preview_ui(false)
+	g.clear_room_preview()
+
+
+func set_room_preview_ui(enable: bool):
 	if enable:
 		get_node("/root/Game/HUD/UI/BuildRoom").visible = false
 		get_node("/root/Game/HUD/UI/BuildRoomCancel").visible = true
@@ -29,9 +60,9 @@ func clear_room_preview():
 		for size in sizes:
 			if size.get_name() == c.SIZES[room.size]:
 				size.show()
-				var walls = size.get_node("Walls").get_children()
-				for wall in walls:
-					wall.display()
+				for tile in size.get_children():
+					for wall in tile.get_node("Walls").get_children():
+						wall.display()
 			else:
 				size.hide()
 

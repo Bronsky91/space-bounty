@@ -1,5 +1,7 @@
 extends Node
 
+enum DIRECTION {left, up, right, down}
+
 const EMPTY_ROOM = preload("res://Assets/room-empty.jpg")
 const ROOM = preload("res://Assets/room-test.jpg")
 const CHARACTER_SCENE = preload("res://Scenes/Character.tscn")
@@ -21,6 +23,9 @@ const SMALL: Vector2 = Vector2(128,128)
 const LONG: Vector2 = Vector2(256,128)
 const TALL: Vector2 = Vector2(128,256)
 const BIG: Vector2 = Vector2(256,256)
+
+# Wall Types
+enum WALL { left1,left2,top,right1,right2,bottom }
 
 # Set Starting Room Specs
 const ROOM_SPEC: Dictionary = {

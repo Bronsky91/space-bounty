@@ -1,30 +1,44 @@
 extends Node2D
 
-export var coord: Vector2
+var id: int = 0
 
 var is_productive: bool = false
 var type: String
 var generation_rate: int
 var size: int = c.SIZE.small
 
-onready var available_positions = get_node("Size/" + c.SIZES[size] + "/Positions").get_children()
-
-func _ready():
-	pass
+onready var available_positions = get_node("Size/" + c.SIZES[size] + "/RoomTile/Positions").get_children()
 
 
 func resize(newSize: int) -> void:
-	print("newSize: " + str(newSize))
+#	g.purge_tiles_by_room_id(room_id)
+#	var base_coord: Vector2 = get_node("Size/Small/RoomTile").coord
+#	if size == c.SIZE.small:
+#		if newSize == c.SIZE.long:
+#			for s in get_node("Size").get_children():
+#				if s.name == c.SIZES[size]:
+#					s.show()
+#					for tile in s.get_children():
+#						if(tile.name == "RoomTile"):
+#							tile.coord = base_coord
+#							g.add_tile(base_coord, room_id)
+#						elif(tile.name == "RoomTile2"):
+#							tile.coord = Vector2(base_coord.x + 1, base_coord.y)
+#							g.ship_room_tiles.add(Vector3(base_coord.x + 1, base_coord.y, room_id))
+#				else:
+#					s.hide()
+	pass
 
 
 func produce() -> void:
 	$Timer.start()
 	$Edit.hide()
-	#$RoomSprite.texture = c.ROOM
+
 
 func start_production() -> void:
 	is_productive = true
 	produce()
+
 
 func build(specs: Dictionary) -> void:
 	r.subtract_credits(specs.cost)
@@ -35,6 +49,7 @@ func build(specs: Dictionary) -> void:
 	get_node("/root/Game/Fleet/Ship").add_room(specs.type) # Tells ship the room is added
 	if type == c.MISSION:
 		$BountyStart.show()
+
 
 func _on_Timer_timeout() -> void:
 	# If the type of room is a production room then generate resource A on a timer

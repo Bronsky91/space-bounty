@@ -1,6 +1,9 @@
 extends Node2D
 
-export var coord: Vector2
+var neighbor_left: String = ""
+var neighbor_top: String = ""
+var neighbor_right: String = ""
+var neighbor_bottom: String = ""
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,23 +16,29 @@ func _ready():
 	$BlueOverlay.modulate.a = 0.5
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_Build_pressed():
-	var container = get_node("../../Rooms/Navigation2D")
-	var room = load("res://Scenes/Room.tscn")
+	var rooms = get_node("../../Rooms/Navigation2D")
+	var room = load("res://Scenes/Room.tscn").instance()
+	var tile = room.get_node("Size/Small/RoomTile")
+	rooms.add_child(room)
+	room.position = position
+	room.id = g.new_room_id()
+	if neighbor_left:
+		tile.neighbor_left = neighbor_left
+		g.set_tile_neighbor(neighbor_left, c.DIRECTION.right, tile.id)
+	if neighbor_top:
+		tile.neighbor_top = neighbor_top
+		g.set_tile_neighbor(neighbor_top, c.DIRECTION.down, tile.id)
+	if neighbor_right:
+		tile.neighbor_right = neighbor_right
+		g.set_tile_neighbor(neighbor_right, c.DIRECTION.left, tile.id)
+	if neighbor_bottom:
+		tile.neighbor_bottom = neighbor_bottom
+		g.set_tile_neighbor(neighbor_bottom,c.DIRECTION.up, tile.id)
+	
+	
+	var last_index = room.get_index()
 	var ysort = get_node('../../Rooms/Navigation2D/YSort')
-	var instance = room.instance()
-	instance.coord = coord
-	instance.position = position
-	#container.call_deferred("add_child", instance)
-	container.add_child(instance)
-	var last_index = instance.get_index()
-	container.move_child(ysort, last_index + 1)
-	g.ship_rooms.append(coord)
-	g.enable_room_preview_ui(false)
-	g.clear_room_preview()
+	rooms.move_child(ysort, last_index + 1)
+	g.exit_room_preview()
 

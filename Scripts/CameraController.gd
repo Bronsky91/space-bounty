@@ -1,13 +1,13 @@
 extends Camera2D
 
-onready var helm = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D/HelmRoom")
+onready var bridge = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D/BridgeRoom")
 var _previousPosition: Vector2 = Vector2(0, 0);
 var _moveCamera: bool = false;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = helm.position
+	position = bridge.position
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
