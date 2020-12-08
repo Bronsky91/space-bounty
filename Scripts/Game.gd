@@ -60,7 +60,7 @@ func add_preview_room(neighbor_dir: int, neighbor_id: String, pos: Vector2):
 
 
 func _on_BuildRoomCancel_pressed():
-	g.enable_room_preview_ui(false)
+	g.set_room_preview_ui(false)
 	g.clear_room_preview()
 
 
