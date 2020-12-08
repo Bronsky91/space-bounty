@@ -14,6 +14,14 @@ const ARMORY: String = 'Armory'
 const SB_GREEN: Color = Color(0,1,0,1)
 const SB_RED: Color = Color(1,0,0,1)
 
+# Room Sizes
+enum SIZE { small,long,tall,big }
+const SIZES = ["Small", "Long", "Tall", "Big"]
+const SMALL: Vector2 = Vector2(128,128)
+const LONG: Vector2 = Vector2(256,128)
+const TALL: Vector2 = Vector2(128,256)
+const BIG: Vector2 = Vector2(256,256)
+
 # Set Starting Room Specs
 const ROOM_SPEC: Dictionary = {
 	# Rates do different things per type of Room

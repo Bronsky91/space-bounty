@@ -3,6 +3,7 @@ extends Node
 var bounties_in_progress = []
 var helm_position = Vector2(256,256)
 var ship_rooms = [Vector2(0,0)]
+var size = "Small"
 
 signal bounty_progress_update
 
@@ -19,17 +20,21 @@ func enable_room_preview_ui(enable: bool):
 func clear_room_preview():
 	var rooms = get_node("/root/Game/Fleet/Ship/Rooms/Navigation2D").get_children()
 	var room_previews = get_node("/root/Game/Fleet/Ship/RoomPreviews").get_children()
-	for child in room_previews:
-		child.queue_free()
-	for child in rooms:
-		if child is YSort:
+	for room_preview in room_previews:
+		room_preview.queue_free()
+	for room in rooms:
+		if room is YSort:
 			continue
-		child.get_node("WallLeft1").display()
-		child.get_node("WallLeft2").display()
-		child.get_node("WallTop").display()
-		child.get_node("WallRight1").display()
-		child.get_node("WallRight2").display()
-		child.get_node("WallBottom").display()
+		var sizes = room.get_node("Size").get_children()
+		for size in sizes:
+			if size.get_name() == c.SIZES[room.size]:
+				size.show()
+				var walls = size.get_node("Walls").get_children()
+				for wall in walls:
+					wall.display()
+			else:
+				size.hide()
+
 
 func apply_in_progress_bounty(bounty: Bounty):
 	bounties_in_progress.append(bounty)

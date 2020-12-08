@@ -5,11 +5,17 @@ export var coord: Vector2
 var is_productive: bool = false
 var type: String
 var generation_rate: int
+var size: int = c.SIZE.small
 
-onready var available_positions = $Positions.get_children()
+onready var available_positions = get_node("Size/" + c.SIZES[size] + "/Positions").get_children()
 
 func _ready():
 	pass
+
+
+func resize(newSize: int) -> void:
+	print("newSize: " + str(newSize))
+
 
 func produce() -> void:
 	$Timer.start()
@@ -30,7 +36,6 @@ func build(specs: Dictionary) -> void:
 	if type == c.MISSION:
 		$BountyStart.show()
 
-
 func _on_Timer_timeout() -> void:
 	# If the type of room is a production room then generate resource A on a timer
 	if c.PRODUCTION_ROOMS.has(type):
@@ -45,11 +50,17 @@ func _on_Edit_pressed():
 func _on_MissionStart_button_up():
 	$BountySelect.popup()
 
+
 func free_position(pos):
 	if pos:
 		available_positions.append(pos)
-	
+
+
 func take_position(pos):
 	available_positions.erase(pos)
 	return pos
+
+
+func _on_Resize_pressed():
+	$SizeSelect.popup()
 

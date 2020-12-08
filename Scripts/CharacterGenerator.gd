@@ -69,6 +69,9 @@ func set_sprite_color(folder, sprite: Sprite, number: String) -> void:
 	var gray_palette_path = "res://Assets/Palettes/{folder}/{folder}color_000.png".format({
 		"folder": folder
 	})
+	print(sprite.get_name())
+	print(sprite.material)
+	print(palette_path)
 	sprite.material.set_shader_param("palette_swap", load(palette_path))
 	sprite.material.set_shader_param("greyscale_palette", load(gray_palette_path))
 	pallete_sprite_state[folder] = number

@@ -57,6 +57,7 @@ func _process(delta):
 func _on_direction_change(new_direction):
 	if new_direction != last_direction:
 		var animation_direction = animation_directions[new_direction]
+		print("new_direction: " + str(new_direction) + "  " + animation_direction)
 		$AnimationPlayer.play("Walk"+animation_direction)
 	if stopped:
 		play_stopped_animation()
@@ -117,5 +118,6 @@ func _on_ChangePosTimer_timeout():
 	move_position_in_current_room()
 
 func _on_Area2D_area_entered(area):
-	if 'Room' in area.get_parent().name:
-		current_room = area.get_parent()
+	var container = area.get_node("../../..")
+	if 'Room' in container.name:
+		current_room = container

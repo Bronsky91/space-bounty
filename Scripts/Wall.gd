@@ -17,7 +17,7 @@ func display():
 
 
 func set_attributes():
-	var room = get_parent()
+	var room = get_node("../../../..")
 	var neighbor_coord: Vector2
 	if (wall == WALL.left1 or wall == WALL.left2):
 		neighbor_coord = Vector2(room.coord.x - 1, room.coord.y)
@@ -78,7 +78,7 @@ func set_texture():
 
 
 func adjust_position():
-	var floor_sprite = get_node("../FloorSprite")
+	var floor_sprite = get_node("../../FloorSprite")
 	var fs = floor_sprite.texture.get_size() # floor size
 	var ws = Vector2(0,0)
 	if($Sprite.texture):
