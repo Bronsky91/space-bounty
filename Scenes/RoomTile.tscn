@@ -3,10 +3,10 @@
 [ext_resource path="res://Resources/TileSets/RoomSmallNav.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/RoomTile.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Ship/Floor/Floor_001_Small.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Ship/Floor/Floor_001.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 64 )
+extents = Vector2( 75.2474, 75.5594 )
 
 [node name="RoomTile" type="Node2D"]
 script = ExtResource( 3 )
@@ -25,26 +25,26 @@ tile_data = PoolIntArray( -458753, 1, 0, -524288, 1, 0, -393217, 1, 0, -458752, 
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="WallTop" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 0, -64 )
+position = Vector2( 0, -75 )
 
 [node name="WallBottom" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 0, 64 )
+position = Vector2( 0, 75 )
 wall = 5
 
 [node name="WallLeft1" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( -64, 0 )
+position = Vector2( -75, 0 )
 wall = 0
 
 [node name="WallLeft2" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( -64, 0 )
+position = Vector2( -75, 0 )
 wall = 1
 
 [node name="WallRight1" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 64, 0 )
+position = Vector2( 75, 0 )
 wall = 3
 
 [node name="WallRight2" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 64, 0 )
+position = Vector2( 75, 0 )
 wall = 4
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -7,34 +7,12 @@ var type: String
 var generation_rate: int
 var size: int = c.SIZE.small
 
-onready var available_positions = get_node("Size/" + c.SIZES[size] + "/RoomTile/Positions").get_children()
+export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_01 = 0
+export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_02 = 0
+export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_03 = 0
+export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_04 = 0
 
-
-func resize(newSize: int) -> void:
-	var old = size
-	size = newSize
-	if old == c.SIZE.small:
-		var old_size = get_node("Size/Small")
-		var old_tile = get_node("Size/Small/RoomTile")
-		if newSize == c.SIZE.long:
-			var new_size = get_node("Size/Long")
-			var new_tile = get_node("Size/Long/RoomTile")
-			var new_tile2 = get_node("Size/Long/RoomTile2")
-			new_tile.set_neighbors(old_tile.neighbor_left, old_tile.neighbor_top, new_tile2.id, "")
-			new_tile2.set_neighbors(new_tile.id,"",old_tile.neighbor_right, old_tile.neighbor_bottom)
-			if(old_tile.neighbor_left):
-				g.set_tile_neighbor(old_tile.neighbor_left, c.DIRECTION.right, new_tile.id)
-			if(old_tile.neighbor_top):
-				g.set_tile_neighbor(old_tile.neighbor_top, c.DIRECTION.down, new_tile.id)
-			if(old_tile.neighbor_right):
-				g.set_tile_neighbor(old_tile.neighbor_right, c.DIRECTION.left, new_tile2.id)
-			if(old_tile.neighbor_bottom):
-				g.set_tile_neighbor(old_tile.neighbor_bottom, c.DIRECTION.up, new_tile2.id)
-			old_tile.set_neighbors("","","","")
-	
-	g.seek_missing_neighbors(self)
-	g.reposition_rooms()
-	g.refresh_walls()
+onready var available_positions = get_node("RoomTile/Positions").get_children()
 
 
 func produce() -> void:

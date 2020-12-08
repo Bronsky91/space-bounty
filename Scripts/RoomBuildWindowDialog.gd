@@ -5,7 +5,7 @@ const build_options: Array = [
 	c.COMPUTER,
 	c.CREW,
 	c.ARMORY,
-	c.GREEN_HOUSE,
+	c.GREEN_HOUSE
 ]
 
 var current_gold: int

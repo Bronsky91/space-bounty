@@ -56,16 +56,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuildRoom" type="Button" parent="HUD/UI"]
-margin_left = 511.0
-margin_top = 880.0
-margin_right = 607.0
-margin_bottom = 916.0
-text = "Build Room"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AddCrew" type="Button" parent="HUD/UI"]
 margin_left = 511.0
 margin_top = 831.21
@@ -90,6 +80,5 @@ __meta__ = {
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 6 )
-[connection signal="pressed" from="HUD/UI/BuildRoom" to="." method="_on_BuildRoom_pressed"]
 [connection signal="pressed" from="HUD/UI/AddCrew" to="." method="_on_AddCrew_pressed"]
 [connection signal="pressed" from="HUD/UI/BuildRoomCancel" to="." method="_on_BuildRoomCancel_pressed"]

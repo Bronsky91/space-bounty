@@ -11,7 +11,26 @@ script = ExtResource( 2 )
 [node name="Navigation2D" type="Navigation2D" parent="Rooms"]
 
 [node name="BridgeRoom" parent="Rooms/Navigation2D" instance=ExtResource( 1 )]
-position = Vector2( 256, 256 )
+tile_01 = 57
+tile_02 = 147
+tile_03 = 45
+tile_04 = 135
+
+[node name="Room" parent="Rooms/Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( -150, 0 )
+tile_01 = 129
+
+[node name="Room2" parent="Rooms/Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( 300, 0 )
+tile_01 = 33
+
+[node name="Room3" parent="Rooms/Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( -150, 150 )
+tile_01 = 129
+
+[node name="Room4" parent="Rooms/Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( 300, 150 )
+tile_01 = 33
 
 [node name="YSort" type="YSort" parent="Rooms/Navigation2D"]
 

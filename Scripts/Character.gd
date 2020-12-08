@@ -117,6 +117,6 @@ func _on_ChangePosTimer_timeout():
 	move_position_in_current_room()
 
 func _on_Area2D_area_entered(area):
-	var container = area.get_node("../../../..")
+	var container = area.get_node("../..")
 	if container.name.ends_with("Room"):
 		current_room = container

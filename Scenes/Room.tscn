@@ -1,36 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Room.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/RoomSelect.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/BountySelect.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/FloatTextManager.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/SizeSelect.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/RoomTile.tscn" type="PackedScene" id=9]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Size" type="Node2D" parent="."]
+[node name="RoomTile" parent="." instance=ExtResource( 9 )]
 
-[node name="Small" type="Node2D" parent="Size"]
-
-[node name="RoomTile" parent="Size/Small" instance=ExtResource( 9 )]
-
-[node name="Long" type="Node2D" parent="Size"]
+[node name="RoomTile2" parent="." instance=ExtResource( 9 )]
 visible = false
+position = Vector2( 150, 0 )
 
-[node name="RoomTile" parent="Size/Long" instance=ExtResource( 9 )]
-is_interior_right = true
-
-[node name="RoomTile2" parent="Size/Long" instance=ExtResource( 9 )]
-position = Vector2( 128, 0 )
-is_interior_left = true
-
-[node name="Tall" type="Node2D" parent="Size"]
+[node name="RoomTile3" parent="." instance=ExtResource( 9 )]
 visible = false
+position = Vector2( 0, 150 )
 
-[node name="Big" type="Node2D" parent="Size"]
+[node name="RoomTile4" parent="." instance=ExtResource( 9 )]
 visible = false
+position = Vector2( 150, 150 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -41,16 +32,6 @@ margin_top = -9.61743
 margin_right = 22.8391
 margin_bottom = 10.3826
 text = "Edit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resize" type="Button" parent="."]
-margin_left = -22.1609
-margin_top = -35.6174
-margin_right = 22.8391
-margin_bottom = -15.6174
-text = "Resize"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,66 +121,6 @@ margin_right = 1.36339
 margin_bottom = 99.5316
 text = "Cost: "
 
-[node name="SizeSelect" type="WindowDialog" parent="."]
-margin_left = 179.0
-margin_top = 416.0
-margin_right = 456.0
-margin_bottom = 629.0
-window_title = "Resize Room"
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ResizeRoom" type="Button" parent="SizeSelect"]
-anchor_left = 0.318
-anchor_top = 0.773
-anchor_right = 0.685
-anchor_bottom = 0.912
-margin_left = -3.08601
-margin_top = -6.64902
-margin_right = -0.74501
-margin_bottom = -0.256012
-text = "Resize Room"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OptionButton" type="OptionButton" parent="SizeSelect"]
-anchor_left = 0.307
-anchor_top = 0.273
-anchor_right = 0.69
-anchor_bottom = 0.437
-margin_left = 0.960999
-margin_top = -6.149
-margin_right = -0.13002
-margin_bottom = -0.0810013
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="SizeSelect"]
-anchor_left = 0.289
-anchor_top = 0.116
-anchor_right = 0.715
-anchor_bottom = 0.152
-margin_left = 0.0730362
-margin_top = -6.99573
-margin_right = -3.92897
-margin_bottom = 0.0202637
-text = "Select Room Size:"
-
-[node name="CostLabel" type="Label" parent="SizeSelect"]
-anchor_left = 0.289
-anchor_top = 0.116
-anchor_right = 0.715
-anchor_bottom = 0.152
-margin_left = 1.36539
-margin_top = 92.5156
-margin_right = 1.36339
-margin_bottom = 99.5316
-text = "Cost: "
-
 [node name="BountySelect" type="WindowDialog" parent="."]
 margin_left = 179.0
 margin_top = 416.0
@@ -262,14 +183,10 @@ margin_bottom = 99.5316
 text = "Cost: "
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Edit" to="." method="_on_Edit_pressed"]
-[connection signal="pressed" from="Resize" to="." method="_on_Resize_pressed"]
 [connection signal="button_up" from="BountyStart" to="." method="_on_MissionStart_button_up"]
 [connection signal="about_to_show" from="RoomSelect" to="RoomSelect" method="_on_RoomBuildWindowDialog_about_to_show"]
 [connection signal="button_up" from="RoomSelect/BuildRoom" to="RoomSelect" method="_on_BuildRoom_button_up"]
 [connection signal="item_selected" from="RoomSelect/OptionButton" to="RoomSelect" method="_on_OptionButton_item_selected"]
-[connection signal="about_to_show" from="SizeSelect" to="SizeSelect" method="_on_RoomBuildWindowDialog_about_to_show"]
-[connection signal="pressed" from="SizeSelect/ResizeRoom" to="SizeSelect" method="_on_ResizeRoom_pressed"]
-[connection signal="item_selected" from="SizeSelect/OptionButton" to="SizeSelect" method="_on_OptionButton_item_selected"]
 [connection signal="about_to_show" from="BountySelect" to="BountySelect" method="_on_MissionSelect_about_to_show"]
 [connection signal="button_up" from="BountySelect/Send" to="BountySelect" method="_on_Send_button_up"]
 [connection signal="item_selected" from="BountySelect/OptionButton" to="BountySelect" method="_on_OptionButton_item_selected"]
