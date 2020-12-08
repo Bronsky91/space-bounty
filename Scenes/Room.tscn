@@ -20,11 +20,10 @@ script = ExtResource( 2 )
 visible = false
 
 [node name="RoomTile" parent="Size/Long" instance=ExtResource( 9 )]
-position = Vector2( -64, 0 )
 is_interior_right = true
 
 [node name="RoomTile2" parent="Size/Long" instance=ExtResource( 9 )]
-position = Vector2( 64, 0 )
+position = Vector2( 128, 0 )
 is_interior_left = true
 
 [node name="Tall" type="Node2D" parent="Size"]

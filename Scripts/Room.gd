@@ -11,23 +11,30 @@ onready var available_positions = get_node("Size/" + c.SIZES[size] + "/RoomTile/
 
 
 func resize(newSize: int) -> void:
-#	g.purge_tiles_by_room_id(room_id)
-#	var base_coord: Vector2 = get_node("Size/Small/RoomTile").coord
-#	if size == c.SIZE.small:
-#		if newSize == c.SIZE.long:
-#			for s in get_node("Size").get_children():
-#				if s.name == c.SIZES[size]:
-#					s.show()
-#					for tile in s.get_children():
-#						if(tile.name == "RoomTile"):
-#							tile.coord = base_coord
-#							g.add_tile(base_coord, room_id)
-#						elif(tile.name == "RoomTile2"):
-#							tile.coord = Vector2(base_coord.x + 1, base_coord.y)
-#							g.ship_room_tiles.add(Vector3(base_coord.x + 1, base_coord.y, room_id))
-#				else:
-#					s.hide()
-	pass
+	var old = size
+	size = newSize
+	if old == c.SIZE.small:
+		var old_size = get_node("Size/Small")
+		var old_tile = get_node("Size/Small/RoomTile")
+		if newSize == c.SIZE.long:
+			var new_size = get_node("Size/Long")
+			var new_tile = get_node("Size/Long/RoomTile")
+			var new_tile2 = get_node("Size/Long/RoomTile2")
+			new_tile.set_neighbors(old_tile.neighbor_left, old_tile.neighbor_top, new_tile2.id, "")
+			new_tile2.set_neighbors(new_tile.id,"",old_tile.neighbor_right, old_tile.neighbor_bottom)
+			if(old_tile.neighbor_left):
+				g.set_tile_neighbor(old_tile.neighbor_left, c.DIRECTION.right, new_tile.id)
+			if(old_tile.neighbor_top):
+				g.set_tile_neighbor(old_tile.neighbor_top, c.DIRECTION.down, new_tile.id)
+			if(old_tile.neighbor_right):
+				g.set_tile_neighbor(old_tile.neighbor_right, c.DIRECTION.left, new_tile2.id)
+			if(old_tile.neighbor_bottom):
+				g.set_tile_neighbor(old_tile.neighbor_bottom, c.DIRECTION.up, new_tile2.id)
+			print("RoomTile: " + new_tile.neighbor_left + " ::: " + new_tile.neighbor_top + " ::: " + new_tile.neighbor_right + " ::: " + new_tile.neighbor_bottom )
+			print("RoomTile2: " + new_tile2.neighbor_left + " ::: " + new_tile2.neighbor_top + " ::: " + new_tile2.neighbor_right + " ::: " + new_tile2.neighbor_bottom )
+			old_tile.set_neighbors("","","","")
+	g.reposition_rooms()
+	g.refresh_walls()
 
 
 func produce() -> void:

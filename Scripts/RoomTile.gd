@@ -17,6 +17,13 @@ func _ready():
 	id = uuid_util.v4()
 
 
+func set_neighbors(left, top, right, bottom):
+	neighbor_left = left
+	neighbor_top = top
+	neighbor_right = right
+	neighbor_bottom = bottom
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
