@@ -12,7 +12,6 @@ var is_interior: bool = false
 func display():
 	set_attributes()
 	if is_interior:
-		print("hiding interior wall!")
 		hide()
 	else:
 		show()
