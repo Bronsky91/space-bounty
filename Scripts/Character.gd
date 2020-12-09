@@ -10,6 +10,7 @@ var current_room: Node2D
 var moving_rooms: bool = false
 var destination_room: Node2D
 var current_room_pos: Position2D
+var avail_to_chat: bool = false
 
 var animation_directions = {
 	Vector2.RIGHT: "Right",
@@ -48,7 +49,7 @@ func _process(delta):
 		# Update the distance to walk
 		distance_to_walk -= distance_to_next_point
 	
-	if path.size() == 0 and not stopped:
+	if path.size() == 0 or speed == 0 and not stopped:
 		play_stopped_animation()
 		stopped = true
 		if moving_rooms and destination_room == current_room:
@@ -120,3 +121,18 @@ func _on_Area2D_area_entered(area):
 	var container = area.get_node("../..")
 	if container.name.ends_with("Room"):
 		current_room = container
+	if 'Character' in area.get_parent().name and avail_to_chat and area.get_parent().avail_to_chat:
+		speed = 0
+		avail_to_chat = false
+		$ChatCooldown.stop()
+		$ChatDuration.start()
+		$ChatBubbles/ChatSweat.show()
+
+func _on_ChatCooldown_timeout():
+	avail_to_chat = true
+
+func _on_ChatDuration_timeout():
+	speed = 50
+	$ChatCooldown.start()
+	$ChatBubbles/ChatSweat.hide()
+	

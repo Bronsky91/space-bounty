@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Human/Male/HairB/Human_Male_HairB_001.png" type="Texture" id=2]
@@ -11,6 +11,11 @@
 [ext_resource path="res://Assets/Human/Male/HairA/Human_Male_HairA_002.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Human/Male/Hat/Hat_001.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/CharacterGenerator.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Chat_Angry.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Chat_Empty.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Chat_Sweat.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Chat_Heart.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Chat_Dotdotdot.png" type="Texture" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -1127,63 +1132,55 @@ material = SubResource( 2 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Body" type="Sprite" parent="."]
 material = SubResource( 4 )
 texture = ExtResource( 3 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Bottom" type="Sprite" parent="."]
 material = SubResource( 6 )
 texture = ExtResource( 4 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Top" type="Sprite" parent="."]
 material = SubResource( 8 )
 texture = ExtResource( 5 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Head" type="Sprite" parent="."]
 material = SubResource( 10 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Eyes" type="Sprite" parent="."]
 material = SubResource( 12 )
 texture = ExtResource( 7 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Eyebrow" type="Sprite" parent="."]
 material = SubResource( 14 )
 texture = ExtResource( 8 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="HairA" type="Sprite" parent="."]
 material = SubResource( 16 )
 texture = ExtResource( 9 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="Hat" type="Sprite" parent="."]
+visible = false
 material = SubResource( 18 )
 texture = ExtResource( 10 )
 vframes = 6
 hframes = 8
-frame = 28
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IdleDown = SubResource( 19 )
@@ -1206,12 +1203,48 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
+[node name="ChatCooldown" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="ChatDuration" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -1.41421, -1.76777 )
 shape = SubResource( 27 )
+
+[node name="ChatBubbles" type="Node2D" parent="."]
+
+[node name="ChatAngry" type="Sprite" parent="ChatBubbles"]
+visible = false
+position = Vector2( -0.749153, -46.604 )
+texture = ExtResource( 12 )
+
+[node name="ChatDotdotdot" type="Sprite" parent="ChatBubbles"]
+visible = false
+position = Vector2( -0.749153, -46.604 )
+texture = ExtResource( 16 )
+
+[node name="ChatEmpty" type="Sprite" parent="ChatBubbles"]
+visible = false
+position = Vector2( -0.749153, -46.604 )
+texture = ExtResource( 13 )
+
+[node name="ChatHeart" type="Sprite" parent="ChatBubbles"]
+visible = false
+position = Vector2( -0.749153, -46.604 )
+texture = ExtResource( 15 )
+
+[node name="ChatSweat" type="Sprite" parent="ChatBubbles"]
+visible = false
+position = Vector2( -0.749153, -46.604 )
+texture = ExtResource( 14 )
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="timeout" from="ChangeRoomTimer" to="." method="_on_ChangeRoomTimer_timeout"]
 [connection signal="timeout" from="ChangePosTimer" to="." method="_on_ChangePosTimer_timeout"]
+[connection signal="timeout" from="ChatCooldown" to="." method="_on_ChatCooldown_timeout"]
+[connection signal="timeout" from="ChatDuration" to="." method="_on_ChatDuration_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
