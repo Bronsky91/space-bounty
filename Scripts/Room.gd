@@ -15,7 +15,7 @@ var generation_rate: int
 #     [B1] B2 [B3]
 export(int, FLAGS, "L1", "L2", "L3", "T1", "T2", "T3", "R1", "R2", "R3", "B1", "B2", "B3") var doors = 0
 
-onready var available_positions = get_node("RoomTile/Positions").get_children()
+onready var available_positions = get_node("Positions").get_children()
 
 
 func produce() -> void:

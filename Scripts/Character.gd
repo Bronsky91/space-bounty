@@ -112,14 +112,13 @@ func move_room_position(room):
 	path = nav.get_simple_path(position, room_pos.global_position)
 	
 func _on_ChangeRoomTimer_timeout():
-	print("_on_ChangeRoomTimer_timeout")
 	move_rooms()
 	
 func _on_ChangePosTimer_timeout():
 	move_position_in_current_room()
 
 func _on_Area2D_area_entered(area):
-	var container = area.get_node("../..")
+	var container = area.get_parent()
 	if "Room" in container.name:
 		current_room = container
 	if 'Character' in area.get_parent().name and avail_to_chat and area.get_parent().avail_to_chat:

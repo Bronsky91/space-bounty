@@ -22,36 +22,37 @@ func set_textures():
 	var top_wall_door = "res://Assets/Ship/Wall/WallThin_" + wall_num + "_TopB.png"
 	var bot_wall = "res://Assets/Ship/Wall/Wall_" + wall_num + "_BotA.png"
 	var bot_wall_door = "res://Assets/Ship/Wall/WallThin_" + wall_num + "_BotB.png"
-	set_texture("L1-A", "L1", side_wall_door_high, side_wall)
-	set_texture("L1-B", "L1", side_wall_door_low, "")
-	set_texture("L2-A", "L2", side_wall_door_high, side_wall)
-	set_texture("L2-B", "L2", side_wall_door_low, "")
-	set_texture("L3-A", "L3", side_wall_door_high, side_wall)
-	set_texture("L3-B", "L3", side_wall_door_low, "")
-	set_texture("T1", "T1", top_wall_door, top_wall)
-	set_texture("T2", "T2", top_wall_door, top_wall)
-	set_texture("T3", "T3", top_wall_door, top_wall)
-	set_texture("R1-A", "R1", side_wall_door_high, side_wall)
-	set_texture("R1-B", "R1", side_wall_door_low, "")
-	set_texture("R2-A", "R2", side_wall_door_high, side_wall)
-	set_texture("R2-B", "R2", side_wall_door_low, "")
-	set_texture("R3-A", "R3", side_wall_door_high, side_wall)
-	set_texture("R3-B", "R3", side_wall_door_low, "")
-	set_texture("B1", "B1", bot_wall_door, bot_wall)
-	set_texture("B2", "B2", bot_wall_door, bot_wall)
-	set_texture("B3", "B3", bot_wall_door, bot_wall)
+	set_tex("L1-A", "L1", side_wall_door_high, side_wall)
+	set_tex("L1-B", "L1", side_wall_door_low, "")
+	set_tex("L2-A", "L2", side_wall_door_high, side_wall)
+	set_tex("L2-B", "L2", side_wall_door_low, "")
+	set_tex("L3-A", "L3", side_wall_door_high, side_wall)
+	set_tex("L3-B", "L3", side_wall_door_low, "")
+	set_tex("T1", "T1", top_wall_door, top_wall)
+	set_tex("T2", "T2", top_wall_door, top_wall)
+	set_tex("T3", "T3", top_wall_door, top_wall)
+	set_tex("R1-A", "R1", side_wall_door_high, side_wall)
+	set_tex("R1-B", "R1", side_wall_door_low, "")
+	set_tex("R2-A", "R2", side_wall_door_high, side_wall)
+	set_tex("R2-B", "R2", side_wall_door_low, "")
+	set_tex("R3-A", "R3", side_wall_door_high, side_wall)
+	set_tex("R3-B", "R3", side_wall_door_low, "")
+	set_tex("B1", "B1", bot_wall_door, bot_wall)
+	set_tex("B2", "B2", bot_wall_door, bot_wall)
+	set_tex("B3", "B3", bot_wall_door, bot_wall)
 
 
-func set_texture(node_name: String, wall_name: String, sprite_door: String, sprite_no_door: String):
-	var wall = get_node_or_null(node_name)
+func set_tex(node_name: String, wall_name: String, sprite_door: String, sprite_no_door: String):
+	var wall = get_node_or_null(node_name + "/Sprite")
 	var tilemap = get_node_or_null("../TileMaps/" + wall_name)
 	if wall:
 		if has_door(wall_name):
-			wall.texture = load(sprite_door if sprite_door else null)
+			if sprite_door:
+				wall.set_texture(load(sprite_door) if sprite_door else null)
 			if tilemap:
 				tilemap.show()			
 		else:
-			wall.texture = load(sprite_no_door if sprite_no_door else null)
+			wall.set_texture(load(sprite_no_door) if sprite_no_door else null)
 			if tilemap:
 				tilemap.hide()
 
