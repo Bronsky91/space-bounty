@@ -43,12 +43,17 @@ func set_textures():
 
 
 func set_texture(node_name: String, wall_name: String, sprite_door: String, sprite_no_door: String):
-	var n = get_node_or_null(node_name)
-	if n:
+	var wall = get_node_or_null(node_name)
+	var tilemap = get_node_or_null("../TileMaps/" + wall_name)
+	if wall:
 		if has_door(wall_name):
-			n.texture = load(sprite_door if sprite_door else null)
+			wall.texture = load(sprite_door if sprite_door else null)
+			if tilemap:
+				tilemap.show()			
 		else:
-			n.texture = load(sprite_no_door if sprite_no_door else null)
+			wall.texture = load(sprite_no_door if sprite_no_door else null)
+			if tilemap:
+				tilemap.hide()
 
 
 func has_door(wall: String):
