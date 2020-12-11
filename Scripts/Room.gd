@@ -1,12 +1,5 @@
 extends Node2D
 
-var id: int = 0
-
-var is_productive: bool = false
-var type: String
-var generation_rate: int
-
-
 # Enables door in corresponding wall -- [] only available if wall is 300px and not 150px
 #     [T1] T2 [T3]
 # [L1]            [R1]
@@ -14,8 +7,14 @@ var generation_rate: int
 # [L3]            [R3]
 #     [B1] B2 [B3]
 export(int, FLAGS, "L1", "L2", "L3", "T1", "T2", "T3", "R1", "R2", "R3", "B1", "B2", "B3") var doors = 0
+export(String, "001", "002") var wall_num
 
 onready var available_positions = get_node("Positions").get_children()
+
+var id: int = 0
+var is_productive: bool = false
+var type: String
+var generation_rate: int
 
 
 func produce() -> void:

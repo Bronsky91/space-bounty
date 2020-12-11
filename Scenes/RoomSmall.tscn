@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/BountySelect.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Room.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/RoomSelect.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/FloatTextManager.tscn" type="PackedScene" id=5]
@@ -173,22 +172,22 @@ position = Vector2( -35, 35 )
 [node name="Walls" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
-[node name="T2" parent="Walls" instance=ExtResource( 2 )]
+[node name="T2" type="Sprite" parent="Walls"]
 position = Vector2( 0, -75 )
 
-[node name="B2" parent="Walls" instance=ExtResource( 2 )]
+[node name="B2" type="Sprite" parent="Walls"]
 position = Vector2( 0, 75 )
 
-[node name="L2-A" parent="Walls" instance=ExtResource( 2 )]
+[node name="L2-A" type="Sprite" parent="Walls"]
 position = Vector2( -75, 0 )
 
-[node name="L2-B" parent="Walls" instance=ExtResource( 2 )]
+[node name="L2-B" type="Sprite" parent="Walls"]
 position = Vector2( -75, 0 )
 
-[node name="R2-A" parent="Walls" instance=ExtResource( 2 )]
+[node name="R2-A" type="Sprite" parent="Walls"]
 position = Vector2( 75, 0 )
 
-[node name="R2-B" parent="Walls" instance=ExtResource( 2 )]
+[node name="R2-B" type="Sprite" parent="Walls"]
 position = Vector2( 75, 0 )
 
 [node name="Timer" type="Timer" parent="."]

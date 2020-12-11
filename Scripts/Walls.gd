@@ -1,10 +1,8 @@
 extends Node2D
 
-onready var door_bitmask = get_parent().doors
-export(String, "001", "002") var wall_num
+onready var door_bitmask: int = get_parent().doors
+onready var wall_num: String = get_parent().wall_num
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	display()
 
@@ -43,7 +41,7 @@ func set_textures():
 
 
 func set_tex(node_name: String, wall_name: String, sprite_door: String, sprite_no_door: String):
-	var wall = get_node_or_null(node_name + "/Sprite")
+	var wall = get_node_or_null(node_name)
 	var tilemap = get_node_or_null("../TileMaps/" + wall_name)
 	if wall:
 		if has_door(wall_name):
@@ -68,17 +66,18 @@ func has_door(wall: String):
 
 
 func adjust_position():
+	var offset = 75
 	var floor_sprite = get_node("../FloorSprite")
 	var fs = floor_sprite.texture.get_size()
 	for wall in get_children():
-		var wall_sprite = wall.get_node("Sprite")
-		var ws = wall_sprite.texture.get_size() if wall_sprite.texture else Vector2(0,0)
+		print(wall.name + " " + wall.get_class())
+		var ws = wall.texture.get_size() if wall.texture else Vector2(0,0)
 		if wall.name.begins_with("L"):
-			wall.position = Vector2(-(fs.x / 2) + (ws.x / 2), 0)
+			wall.position = Vector2(-offset + (ws.x / 2), wall.position.y)
 		elif wall.name.begins_with("T"):
-			position = Vector2(0, -(fs.y / 2) + (ws.y / 2))
+			wall.position = Vector2(wall.position.x, -offset + (ws.y / 2))
 		elif wall.name.begins_with("R"):
-			position = Vector2((fs.x / 2) - (ws.x / 2), 0)
+			wall.position = Vector2(fs.x - offset - (ws.x / 2), wall.position.y)
 		elif wall.name.begins_with("B"):
-			position = Vector2(0, (fs.y / 2) - (ws.y / 2))
+			wall.position = Vector2(wall.position.x, fs.y - offset - (ws.y / 2))
 
