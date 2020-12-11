@@ -5,12 +5,15 @@ var id: int = 0
 var is_productive: bool = false
 var type: String
 var generation_rate: int
-var size: int = c.SIZE.small
 
-export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_01 = 0
-export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_02 = 0
-export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_03 = 0
-export(int, FLAGS, "enabled", "interior_left", "interior_top", "interior_right", "interior_bottom", "neighbor_left", "neighbor_top", "neighbor_right", "neighbor_bottom") var tile_04 = 0
+
+# Enables door in corresponding wall -- [] only available if wall is 300px and not 150px
+#     [T1] T2 [T3]
+# [L1]            [R1]
+#  L2              R2
+# [L3]            [R3]
+#     [B1] B2 [B3]
+export(int, FLAGS, "L1", "L2", "L3", "T1", "T2", "T3", "R1", "R2", "R3", "B1", "B2", "B3") var doors = 0
 
 onready var available_positions = get_node("RoomTile/Positions").get_children()
 
